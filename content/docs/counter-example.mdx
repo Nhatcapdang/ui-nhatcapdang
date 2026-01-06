@@ -1,0 +1,401 @@
+---
+title: Counter Examples
+description: Live examples and demonstrations of the Counter component
+---
+
+## Interactive Examples
+
+Scroll down to see the Counter component in action. Each counter will animate once when it enters the viewport.
+
+## Example 1: Basic Count Up
+
+<div className="my-16 p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
+  <div className="text-center">
+    <BasicCounter
+      targetValue={1250}
+      className="text-6xl font-bold text-blue-600"
+    />
+    <p className="mt-4 text-lg text-gray-700">Active Users</p>
+  </div>
+</div>
+
+Simple counter that counts from 0 to 1,250.
+
+```tsx
+<BasicCounter targetValue={1250} className="text-6xl font-bold text-blue-600" />
+```
+
+## Example 2: Currency Counter
+
+<div className="my-16 p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
+  <div className="text-center">
+    <CurrencyCounter
+      targetValue={45000}
+      className="text-6xl font-bold text-green-600"
+    />
+    <p className="mt-4 text-lg text-gray-700">Monthly Revenue</p>
+  </div>
+</div>
+
+Counter displaying currency format using the built-in formatter.
+
+```tsx
+<CurrencyCounter
+  targetValue={45000}
+  className="text-6xl font-bold text-green-600"
+/>
+```
+
+## Example 3: Count Down
+
+<div className="my-16 p-8 bg-gradient-to-br from-red-50 to-red-100 rounded-xl">
+  <div className="text-center">
+    <BasicCounter
+      targetValue={100}
+      direction="down"
+      className="text-6xl font-bold text-red-600"
+    />
+    <p className="mt-4 text-lg text-gray-700">Days Until Launch</p>
+  </div>
+</div>
+
+Counter that counts down from 100 to 0.
+
+```tsx
+<BasicCounter
+  targetValue={100}
+  direction="down"
+  className="text-6xl font-bold text-red-600"
+/>
+```
+
+## Example 4: Stats Grid
+
+<div className="my-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div className="p-8 bg-white rounded-xl shadow-lg text-center">
+    <BasicCounter
+      targetValue={15420}
+      delay={0}
+      className="text-5xl font-bold text-purple-600"
+    />
+    <p className="mt-3 text-gray-600 font-medium">Total Downloads</p>
+  </div>
+  <div className="p-8 bg-white rounded-xl shadow-lg text-center">
+    <BasicCounter
+      targetValue={4567}
+      delay={200}
+      className="text-5xl font-bold text-blue-600"
+    />
+    <p className="mt-3 text-gray-600 font-medium">Active Projects</p>
+  </div>
+  <div className="p-8 bg-white rounded-xl shadow-lg text-center">
+    <PercentageCounter
+      targetValue={98}
+      delay={400}
+      className="text-5xl font-bold text-green-600"
+    />
+    <p className="mt-3 text-gray-600 font-medium">Satisfaction</p>
+  </div>
+</div>
+
+Multiple counters with staggered delays for a cascade effect.
+
+```tsx
+<div className="grid grid-cols-3 gap-6">
+  <div className="text-center">
+    <BasicCounter
+      targetValue={15420}
+      delay={0}
+      className="text-5xl font-bold"
+    />
+    <p>Total Downloads</p>
+  </div>
+  <div className="text-center">
+    <BasicCounter
+      targetValue={4567}
+      delay={200}
+      className="text-5xl font-bold"
+    />
+    <p>Active Projects</p>
+  </div>
+  <div className="text-center">
+    <PercentageCounter
+      targetValue={98}
+      delay={400}
+      className="text-5xl font-bold"
+    />
+    <p>Satisfaction</p>
+  </div>
+</div>
+```
+
+## Example 5: Large Numbers
+
+<div className="my-16 p-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl">
+  <div className="text-center">
+    <BasicCounter
+      targetValue={1500000}
+      delay={300}
+      className="text-7xl font-black text-white"
+    />
+    <p className="mt-4 text-xl text-white font-semibold">API Requests Served</p>
+  </div>
+</div>
+
+Large number with formatting and delayed start.
+
+```tsx
+<BasicCounter
+  targetValue={1500000}
+  delay={300}
+  className="text-7xl font-black text-white"
+/>
+```
+
+## Example 6: Revenue Dashboard
+
+<div className="my-16">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl">
+      <h3 className="text-white text-lg font-semibold mb-2">Total Revenue</h3>
+      <CurrencyCounter
+        targetValue={2450000}
+        className="text-5xl font-bold text-white"
+      />
+      <p className="mt-3 text-emerald-100 text-sm">+23% from last quarter</p>
+    </div>
+    <div className="p-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl">
+      <h3 className="text-white text-lg font-semibold mb-2">New Customers</h3>
+      <BasicCounter
+        targetValue={8450}
+        delay={150}
+        className="text-5xl font-bold text-white"
+      />
+      <p className="mt-3 text-blue-100 text-sm">+15% growth rate</p>
+    </div>
+  </div>
+</div>
+
+Dashboard-style metric cards with counters.
+
+```tsx
+<div className="grid grid-cols-2 gap-6">
+  <div className="p-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl">
+    <h3 className="text-white text-lg font-semibold mb-2">Total Revenue</h3>
+    <CurrencyCounter
+      targetValue={2450000}
+      className="text-5xl font-bold text-white"
+    />
+    <p className="mt-3 text-emerald-100 text-sm">+23% from last quarter</p>
+  </div>
+  <div className="p-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl">
+    <h3 className="text-white text-lg font-semibold mb-2">New Customers</h3>
+    <BasicCounter
+      targetValue={8450}
+      delay={150}
+      className="text-5xl font-bold text-white"
+    />
+    <p className="mt-3 text-blue-100 text-sm">+15% growth rate</p>
+  </div>
+</div>
+```
+
+## Example 7: Minimal Design
+
+<div className="my-16 flex justify-center items-center min-h-[300px]">
+  <div>
+    <PercentageCounter
+      targetValue={99}
+      className="text-9xl font-black text-gray-900"
+    />
+  </div>
+</div>
+
+Clean, minimal design with percentage display.
+
+```tsx
+<PercentageCounter
+  targetValue={99}
+  className="text-9xl font-black text-gray-900"
+/>
+```
+
+## Available Counter Variants for MDX
+
+The following counter variants are available for use in MDX files:
+
+### BasicCounter
+
+Standard number formatting with comma separators:
+
+```mdx
+<BasicCounter targetValue={1250} />
+<!-- Result: 1,250 -->
+```
+
+### CurrencyCounter
+
+USD currency formatting:
+
+```mdx
+<CurrencyCounter targetValue={45000} />
+<!-- Result: $45,000 -->
+```
+
+### PercentageCounter
+
+Percentage with no decimals:
+
+```mdx
+<PercentageCounter targetValue={98} />
+<!-- Result: 98% -->
+```
+
+### DecimalPercentageCounter
+
+Percentage with one decimal place:
+
+```mdx
+<DecimalPercentageCounter targetValue={98.7} />
+<!-- Result: 98.7% -->
+```
+
+## Custom Formatters (React/TypeScript Only)
+
+For React/TypeScript files, you can create custom formatters:
+
+### K/M Notation
+
+```tsx
+import Counter from '@/components/counter';
+
+const kFormatter = (value: number) => {
+  if (value >= 1000000) return `${(value / 1000000).toFixed(1)}M`;
+  if (value >= 1000) return `${(value / 1000).toFixed(1)}K`;
+  return value.toString();
+};
+
+<Counter targetValue={1500000} format={kFormatter} />;
+// Displays as "1.5M"
+```
+
+### Time Format
+
+```tsx
+const timeFormat = (value: number) => {
+  const hours = Math.floor(value);
+  const minutes = Math.round((value - hours) * 60);
+  return `${hours}h ${minutes}m`;
+};
+
+<Counter targetValue={42.5} format={timeFormat} />;
+// Displays as "42h 30m"
+```
+
+**Note**: Custom formatters with inline functions cannot be used in MDX files due to React Server Component limitations. Create a new counter variant in `/src/components/counter-variants.tsx` if you need additional formatters for MDX.
+
+## Tips for Best Results
+
+### Animation Speed
+
+The counter uses spring physics. For faster animations, you can modify the component's spring settings:
+
+- Lower stiffness = slower, more bouncy
+- Higher stiffness = faster, more rigid
+- Higher damping = less bounce
+
+### Viewport Trigger
+
+The counter triggers when it enters the viewport. Keep in mind:
+
+- Animation happens only once (`once: true`)
+- Triggers immediately when in viewport
+- Use `delay` prop to add pause before starting
+
+### Visual Design
+
+Best practices for counter display:
+
+1. **Size Appropriately**: Larger numbers for primary metrics
+2. **Add Context**: Include labels and descriptions
+3. **Use Color**: Highlight with theme colors
+4. **Group Related**: Display similar metrics together
+5. **Add Icons**: Enhance with icons for clarity
+
+## Real-World Use Cases
+
+### Landing Page Hero
+
+```tsx
+<section className="hero">
+  <h1>Trusted by thousands</h1>
+  <div className="stats-grid">
+    <div>
+      <Counter targetValue={50000} />
+      <p>Happy Customers</p>
+    </div>
+    <div>
+      <Counter targetValue={1000000} />
+      <p>Projects Completed</p>
+    </div>
+  </div>
+</section>
+```
+
+### Analytics Dashboard
+
+```tsx
+<div className="dashboard">
+  <MetricCard
+    title="Page Views"
+    value={<Counter targetValue={125430} />}
+    trend="+12%"
+  />
+  <MetricCard
+    title="Revenue"
+    value={<Counter targetValue={45000} format={Formatter.currency} />}
+    trend="+8%"
+  />
+</div>
+```
+
+### Feature Showcase
+
+```tsx
+<section className="features">
+  <h2>Why Choose Us?</h2>
+  <div className="grid">
+    <Feature
+      icon={<UsersIcon />}
+      metric={<Counter targetValue={10000} />}
+      label="Active Users"
+    />
+    <Feature
+      icon={<StarIcon />}
+      metric={<Counter targetValue={4.9} format={(v) => v.toFixed(1)} />}
+      label="Average Rating"
+    />
+  </div>
+</section>
+```
+
+## Performance Considerations
+
+- Each counter instance is lightweight
+- Uses `useRef` to avoid unnecessary re-renders
+- Spring physics is optimized for performance
+- `once: true` prevents repeated animations
+- Recommended: 3-8 counters per viewport
+
+## Browser Compatibility
+
+Works in all modern browsers:
+
+✅ Chrome/Edge (latest)  
+✅ Firefox (latest)  
+✅ Safari (latest)  
+✅ Mobile browsers
+
+---
+
+Return to the [Counter documentation](/docs/counter) for full API reference and implementation details.

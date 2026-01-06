@@ -1,0 +1,587 @@
+---
+title: Counter
+description: An animated counter component with viewport-triggered animations
+---
+
+## Overview
+
+Counter is a client-side React component that creates smooth, animated number transitions. It uses Framer Motion to animate from a start value to a target value when the component enters the viewport, perfect for statistics, metrics, and data visualization.
+
+## Features
+
+- **Viewport-triggered Animation**: Starts counting when visible in viewport
+- **Bidirectional Counting**: Count up or down
+- **Customizable Formatting**: Built-in number and currency formatters
+- **Configurable Delay**: Add delay before animation starts
+- **Spring Physics**: Smooth, natural-feeling animations
+- **One-time Animation**: Triggers only once when first entering viewport
+- **Fully Typed**: Complete TypeScript support
+
+## Installation
+
+This component requires Framer Motion:
+
+```bash
+npm install framer-motion
+# or
+yarn add framer-motion
+# or
+pnpm add framer-motion
+```
+
+## Usage
+
+### In MDX Files
+
+For use in MDX documentation files, use the pre-configured counter variants:
+
+```mdx
+<!-- Basic counter with comma formatting -->
+
+<BasicCounter targetValue={1250} className="text-4xl font-bold" />
+
+<!-- Currency counter -->
+
+<CurrencyCounter targetValue={45000} className="text-5xl font-bold" />
+
+<!-- Percentage counter (no decimals) -->
+
+<PercentageCounter targetValue={98} className="text-3xl font-bold" />
+
+<!-- Percentage counter (with decimals) -->
+
+<DecimalPercentageCounter targetValue={98.7} className="text-3xl font-bold" />
+```
+
+### In React/TypeScript Files
+
+For use in React components, import and use the base Counter with custom formatters:
+
+```tsx
+import Counter, { Formatter } from '@/components/counter';
+
+export default function Page() {
+  return (
+    <div>
+      <h2>Total Users</h2>
+      <Counter targetValue={1250} format={Formatter.number} />
+
+      <h2>Revenue</h2>
+      <Counter targetValue={45000} format={Formatter.currency} />
+    </div>
+  );
+}
+```
+
+## Props
+
+All counter variants accept the same props:
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`targetValue`</td>
+      <td>`number`</td>
+      <td>Required</td>
+      <td>The target value to count to/from</td>
+    </tr>
+    <tr>
+      <td>`direction`</td>
+      <td>`'up' \| 'down'`</td>
+      <td>`'up'`</td>
+      <td>Count up from 0 or down from target</td>
+    </tr>
+    <tr>
+      <td>`delay`</td>
+      <td>`number`</td>
+      <td>`0`</td>
+      <td>Delay in milliseconds before animation starts</td>
+    </tr>
+    <tr>
+      <td>`className`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Additional CSS classes for styling</td>
+    </tr>
+  </tbody>
+</table>
+
+### Base Counter Additional Props
+
+The base `Counter` component (for use in React/TypeScript files) also accepts:
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`format`</td>
+      <td>`(value: number) => string`</td>
+      <td>`Formatter.number`</td>
+      <td>Function to format the counter display</td>
+    </tr>
+  </tbody>
+</table>
+
+## Counter Variants
+
+### For MDX Files
+
+Use these pre-configured variants in your MDX documentation:
+
+#### BasicCounter
+
+Formats numbers with comma separators:
+
+```mdx
+<BasicCounter targetValue={1250} className="text-4xl font-bold" />
+<!-- Displays: 1,250 -->
+```
+
+#### CurrencyCounter
+
+Formats numbers as USD currency:
+
+```mdx
+<CurrencyCounter targetValue={45000} className="text-5xl font-bold" />
+<!-- Displays: $45,000 -->
+```
+
+#### PercentageCounter
+
+Formats numbers as percentages (no decimals):
+
+```mdx
+<PercentageCounter targetValue={98} className="text-3xl font-bold" />
+<!-- Displays: 98% -->
+```
+
+#### DecimalPercentageCounter
+
+Formats numbers as percentages with one decimal place:
+
+```mdx
+<DecimalPercentageCounter targetValue={98.7} className="text-3xl font-bold" />
+<!-- Displays: 98.7% -->
+```
+
+## Built-in Formatters (React/TypeScript)
+
+For use in React/TypeScript files, the base `Counter` component exports a `Formatter` object:
+
+### Formatter.number
+
+Formats numbers with comma separators (US format):
+
+```tsx
+Formatter.number(1234567); // "1,234,567"
+```
+
+### Formatter.currency
+
+Formats numbers as USD currency:
+
+```tsx
+Formatter.currency(1234567); // "$1,234,567"
+```
+
+### Custom Formatter
+
+Create your own formatting function:
+
+```tsx
+const customFormat = (value: number) => {
+  return `${value.toFixed(2)}%`;
+};
+
+<Counter targetValue={95.5} format={customFormat} />;
+```
+
+## Examples
+
+### Count Up (Default)
+
+<Tabs items={['Preview', 'Code']} groupId="language" persist>
+  <Tab value="Preview">
+    <VelocityText repeat={8} className="text-2xl font-semibold my-16">
+      Scroll to see the magic •{' '}
+    </VelocityText>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    'use client';
+
+import { cn } from '@/utils/cn';
+import { useInView, useMotionValue, useSpring } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+
+interface CounterProps {
+  /**
+   * A function to format the counter value. By default, it will format the
+   * number with commas.
+   */
+  format?: (value: number) => string;
+
+  /**
+   * The target value of the counter.
+   */
+  targetValue: number;
+
+  /**
+   * The direction of the counter. If "up", the counter will start from 0 and
+   * go up to the target value. If "down", the counter will start from the target
+   * value and go down to 0.
+   */
+  direction?: 'up' | 'down';
+
+  /**
+   * The delay in milliseconds before the counter starts counting.
+   */
+  delay?: number;
+
+  /**
+   * Additional classes for the counter.
+   */
+  className?: string;
+}
+
+export const Formatter = {
+  number: (value: number) =>
+    Intl.NumberFormat('en-US').format(+value.toFixed(0)),
+  currency: (value: number) =>
+    Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+      +value.toFixed(0)
+    ),
+};
+
+export default function Counter({
+  format = Formatter.number,
+  targetValue,
+  direction = 'up',
+  delay = 0,
+  className,
+}: CounterProps) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isGoingUp = direction === 'up';
+  const motionValue = useMotionValue(isGoingUp ? 0 : targetValue);
+
+  const springValue = useSpring(motionValue, {
+    damping: undefined, // Reduced for quicker animation
+    stiffness: 100, // Increased for more rigidity
+  });
+  const isInView = useInView(ref, { margin: '0px', once: true });
+
+  useEffect(() => {
+    if (!isInView) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      motionValue.set(isGoingUp ? targetValue : 0);
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [isInView, delay, isGoingUp, targetValue, motionValue]);
+
+  useEffect(() => {
+    springValue.on('change', (value) => {
+      if (ref.current) {
+        console.log('value', value);
+        ref.current.textContent = format ? format(value) : value.toString();
+      }
+    });
+  }, [springValue, format]);
+
+  return <span ref={ref} className={cn(className)} />;
+}
+
+    ```
+  </Tab>
+</Tabs>
+
+Starts from 0 and counts up to 1000.
+
+### Count Down
+
+```tsx
+<Counter targetValue={100} direction="down" className="text-4xl font-bold" />
+```
+
+Starts from 100 and counts down to 0.
+
+### With Delay
+
+```tsx
+<Counter targetValue={5000} delay={500} className="text-4xl font-bold" />
+```
+
+Waits 500ms after entering viewport before starting.
+
+### Currency Counter
+
+```tsx
+<Counter
+  targetValue={49999}
+  format={Formatter.currency}
+  className="text-5xl font-bold text-green-600"
+/>
+```
+
+Displays as "$49,999".
+
+### Percentage Counter
+
+```tsx
+const percentFormat = (value: number) => `${value.toFixed(1)}%`
+
+<Counter
+  targetValue={98.7}
+  format={percentFormat}
+  className="text-3xl font-semibold"
+/>
+```
+
+Displays as "98.7%".
+
+### Multiple Counters with Staggered Delays
+
+```tsx
+<div className="grid grid-cols-3 gap-6">
+  <div>
+    <Counter targetValue={1250} delay={0} />
+    <p>Users</p>
+  </div>
+  <div>
+    <Counter targetValue={4500} delay={200} />
+    <p>Downloads</p>
+  </div>
+  <div>
+    <Counter targetValue={98} delay={400} />
+    <p>Rating</p>
+  </div>
+</div>
+```
+
+## How It Works
+
+The Counter component uses several Framer Motion hooks:
+
+1. **useInView**: Detects when the component enters the viewport
+2. **useMotionValue**: Tracks the current counter value
+3. **useSpring**: Applies spring physics for smooth animation
+4. **onChange handler**: Updates the displayed text as values change
+
+### Animation Parameters
+
+The component uses these spring physics settings:
+
+- **damping**: `undefined` (reduced for quicker animation)
+- **stiffness**: `100` (increased for more rigidity)
+
+These settings create a smooth, relatively quick animation that feels responsive.
+
+## Technical Details
+
+### Viewport Detection
+
+The counter triggers when it enters the viewport with:
+
+```tsx
+useInView(ref, { margin: '0px', once: true });
+```
+
+The `once: true` option ensures the animation only plays once, preventing re-triggers on scroll.
+
+### Direction Logic
+
+- **Up**: Starts at `0`, animates to `targetValue`
+- **Down**: Starts at `targetValue`, animates to `0`
+
+### Formatting Updates
+
+The counter updates in real-time as the motion value changes:
+
+```tsx
+springValue.on('change', (value) => {
+  ref.current.textContent = format(value);
+});
+```
+
+## Styling
+
+The Counter component renders as a `<span>` element, making it inline by default. Style it like any text element:
+
+```tsx
+<Counter
+  targetValue={1000}
+  className="text-6xl font-black text-blue-600 tracking-tight"
+/>
+```
+
+Common styling patterns:
+
+```tsx
+// Large display counter
+<Counter
+  targetValue={5000}
+  className="text-7xl font-bold"
+/>
+
+// Metric card
+<div className="p-6 bg-white rounded-lg shadow">
+  <Counter
+    targetValue={1234}
+    className="text-4xl font-bold text-gray-900"
+  />
+  <p className="text-sm text-gray-600 mt-2">Active Users</p>
+</div>
+
+// Colored counter
+<Counter
+  targetValue={99}
+  format={(v) => `${v.toFixed(0)}%`}
+  className="text-5xl font-bold text-green-500"
+/>
+```
+
+## Use Cases
+
+### Statistics Section
+
+Display key metrics on landing pages:
+
+```tsx
+<section className="py-20">
+  <div className="grid grid-cols-4 gap-8">
+    <div className="text-center">
+      <Counter targetValue={10000} className="text-5xl font-bold" />
+      <p className="mt-2 text-gray-600">Happy Customers</p>
+    </div>
+    {/* More stats... */}
+  </div>
+</section>
+```
+
+### Dashboard Metrics
+
+Animated KPI displays:
+
+```tsx
+<div className="dashboard-card">
+  <h3>Monthly Revenue</h3>
+  <Counter
+    targetValue={125000}
+    format={Formatter.currency}
+    className="text-6xl font-bold text-green-600"
+  />
+  <p className="text-sm text-gray-500">+12% from last month</p>
+</div>
+```
+
+### Countdown Timer Effect
+
+Create countdown effects:
+
+```tsx
+<Counter
+  targetValue={10}
+  direction="down"
+  className="text-9xl font-black text-red-600"
+/>
+```
+
+## Best Practices
+
+1. **Appropriate Values**: Use reasonable target values - very large numbers may take long to animate
+2. **Consistent Formatting**: Use consistent formatters across related metrics
+3. **Semantic Markup**: Wrap counters in semantic HTML for accessibility
+4. **Performance**: Limit the number of counters on a single page
+5. **Visual Hierarchy**: Make important metrics stand out with size and color
+
+## Browser Support
+
+Works in all modern browsers that support:
+
+- Intersection Observer API
+- CSS transforms
+- Framer Motion
+
+Compatible with Chrome, Firefox, Safari, and Edge (latest versions).
+
+## Accessibility
+
+Consider these accessibility aspects:
+
+- The counter uses a `<span>` element that updates dynamically
+- Screen readers will read the final value
+- The animation respects the initial render value
+- Consider adding `aria-live="polite"` for dynamic updates
+- Provide context with surrounding text
+
+Example with better accessibility:
+
+```tsx
+<div role="status" aria-live="polite">
+  <span className="sr-only">Total users: </span>
+  <Counter targetValue={1250} className="text-4xl font-bold" />
+</div>
+```
+
+## Performance Tips
+
+1. **Limit Instances**: Use 3-6 counters per viewport for best performance
+2. **Stagger Delays**: Add small delays to create a cascade effect
+3. **Optimize Re-renders**: Component uses `useRef` to minimize re-renders
+4. **Once Animation**: The `once: true` option prevents repeated animations
+
+## Common Patterns
+
+### Stats Grid
+
+```tsx
+<div className="grid grid-cols-3 gap-8">
+  <div className="text-center">
+    <Counter targetValue={1250} delay={0} className="text-4xl font-bold" />
+    <p>Users</p>
+  </div>
+  <div className="text-center">
+    <Counter targetValue={450} delay={100} className="text-4xl font-bold" />
+    <p>Projects</p>
+  </div>
+  <div className="text-center">
+    <Counter targetValue={98} delay={200} className="text-4xl font-bold" />
+    <p>Satisfaction</p>
+  </div>
+</div>
+```
+
+### Revenue Display
+
+```tsx
+<div className="bg-gradient-to-r from-green-500 to-green-600 p-8 rounded-xl">
+  <h2 className="text-white text-xl mb-2">Total Revenue</h2>
+  <Counter
+    targetValue={1250000}
+    format={Formatter.currency}
+    className="text-6xl font-black text-white"
+  />
+</div>
+```
+
+---
+
+See also: [Counter Examples](/docs/counter-example) for live interactive demonstrations.

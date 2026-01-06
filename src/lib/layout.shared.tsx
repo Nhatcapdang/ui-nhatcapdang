@@ -2,8 +2,24 @@ import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 
 export function baseOptions(): BaseLayoutProps {
   return {
-    nav: {
-      title: 'My App',
+    themeSwitch: {
+      enabled: true,
+      mode: 'light-dark-system',
     },
+    nav: {
+      title: 'Nhatcapdang',
+      url: '/',
+    },
+    githubUrl: 'https://github.com/Nhatcapdang',
+    links: [
+      {
+        text: 'Home',
+        url: '/',
+      },
+      {
+        text: 'Docs',
+        url: '/docs',
+      },
+    ],
   };
 }
