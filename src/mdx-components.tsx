@@ -9,8 +9,9 @@ import {
   BasicCounter,
 } from '@/components/counter-variants';
 import * as TabsComponents from 'fumadocs-ui/components/tabs';
-import { BlockPreview } from '@/components/block-preview';
 import { CodeBlock, Pre } from 'fumadocs-ui/components/codeblock';
+import { BlockPreview } from '@/mdx/block-preview';
+import { CodePreview } from '@/mdx/code-preview';
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -21,6 +22,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     PercentageCounter,
     DecimalPercentageCounter,
     BasicCounter,
+    CodePreview,
     BlockPreview,
     ...TabsComponents,
     pre: ({ ref: _ref, ...props }) => (

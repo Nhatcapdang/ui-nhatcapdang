@@ -1,108 +1,14 @@
 ---
-title: VelocityText Example
-description: Live examples and demonstrations of the VelocityText component
+title: Hero Section
+description: Hero sections to highlight your message and engage users with a clean, bold intro.
 ---
 
-## Interactive Examples
+### Hero 4 (New)
 
-This page demonstrates the VelocityText component in action. Scroll down to see the animations respond to your scrolling speed.
-
-### Example 1: Basic Forward Animation
-
-<VelocityText repeat={8} className="text-2xl font-semibold my-16">
-	Scroll to see the magic •{' '}
-</VelocityText>
-
-Scroll up and down to see how the text moves horizontally and skews based on your scroll velocity.
-
-### Example 2: Reverse Direction
-
-<VelocityText repeat={8} reverse className="text-2xl font-semibold my-16">
-	This moves in reverse •{' '}
-</VelocityText>
-
-Notice how this section moves in the opposite direction compared to the first example.
-
-### Example 3: Large Text
-
-<VelocityText repeat={6} className="text-5xl font-bold text-blue-600 my-20">
-	BIG TEXT •{' '}
-</VelocityText>
-
-Larger text creates a more dramatic effect.
-
-### Example 4: Subtle Animation
-
-<VelocityText repeat={10} className="text-sm text-gray-600 my-12">
-	Subtle and elegant •{' '}
-</VelocityText>
-
-Smaller text with more repetitions creates a subtle, elegant effect.
-
-### Example 5: Alternating Sections
-
-<div className="space-y-8 my-16">
-	<VelocityText repeat={8} className="text-3xl font-bold text-purple-600">
-		Forward Motion •{' '}
-	</VelocityText>
-
-	<VelocityText repeat={8} reverse className="text-3xl font-bold text-green-600">
-		Reverse Motion •{' '}
-	</VelocityText>
-
-	<VelocityText repeat={8} className="text-3xl font-bold text-orange-600">
-		Forward Again •{' '}
-	</VelocityText>
-</div>
-
-## Tips for Best Results
-
-1. **Scroll Slowly**: Try scrolling slowly to see the skew effect
-2. **Scroll Quickly**: Scroll quickly to see dramatic skew angles
-3. **Scroll Up and Down**: The effect works in both directions
-4. **Mobile**: Works great on touch devices too
-
-## Customization Ideas
-
-You can customize the VelocityText component in many ways:
-
-- Change font size and weight
-- Adjust colors and gradients
-- Modify the repeat count
-- Add custom spacing between elements
-- Combine with other scroll-based effects
-
-## Code for This Page
-
-All the examples on this page use the same component with different props:
-
-```tsx
-// Basic usage
-<VelocityText repeat={8} className="text-2xl font-semibold">
-	Scroll to see the magic •{' '}
-</VelocityText>
-
-// Reverse direction
-<VelocityText repeat={8} reverse className="text-2xl font-semibold">
-	This moves in reverse •{' '}
-</VelocityText>
-
-// Custom styling
-<VelocityText repeat={6} className="text-5xl font-bold text-blue-600">
-	BIG TEXT •{' '}
-</VelocityText>
-```
-
-## Performance Notes
-
-Each VelocityText instance tracks scroll position independently. For best performance:
-
-- Limit the number of instances per page (3-5 is ideal)
-- Keep repeat counts reasonable (5-10 works well)
-- Test on mobile devices to ensure smooth performance
-- Consider using `will-change: transform` for additional optimization
-
----
-
-Return to the [VelocityText documentation](/docs/velocity-text) for full API reference and implementation details.
-
+<BlockPreview
+    path="/src/components/ui.tsx"
+    registry="ui"
+    lgHeight={1200}
+    mdHeight={1000}
+    smHeight={700}
+/>
