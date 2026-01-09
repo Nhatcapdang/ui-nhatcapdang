@@ -21,7 +21,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '../components/ui/tabs';
+} from '@/components/animate-ui/components/animate/tabs';
 import {
   Tooltip,
   TooltipContent,
@@ -29,6 +29,7 @@ import {
   TooltipTrigger,
 } from '../components/ui/tooltip';
 import { cn } from '../utils/cn';
+import { TabsContents } from '@/components/animate-ui/primitives/animate/tabs';
 
 export type IBlockPreview = {
   path?: string;
@@ -69,20 +70,16 @@ export const BlockPreview = ({
 
   return (
     <div className="mt-3 rounded-md border not-prose">
-      <div className="flex items-center justify-between gap-2 border-b p-3">
+      <div>
         <Tabs value={mode} onValueChange={(e) => setMode(e as typeof mode)}>
           <TabsList className="flex gap-2">
             <TabsTrigger value="preview" className="cursor-pointer ">
-              <Button variant="outline">
-                <EyeIcon className="size-5" />
-                Preview
-              </Button>
+              <EyeIcon className="size-5" />
+              Preview
             </TabsTrigger>
             <TabsTrigger value="code" className="cursor-pointer ">
-              <Button variant="outline">
-                <Code2Icon className="size-5" />
-                Code
-              </Button>
+              <Code2Icon className="size-5" />
+              Code
             </TabsTrigger>
             <TooltipProvider>
               <div className="flex items-center gap-1">
@@ -188,16 +185,18 @@ export const BlockPreview = ({
               </Button>
             </Link>
           </TabsList>
-          <TabsContent value="preview">
-            <iframe
-              ref={iframeRef}
-              className="h-full w-full"
-              src={path ? `/examples/${path}` : undefined}
-            ></iframe>
-          </TabsContent>
-          <TabsContent value="code">
-            <CodePreview path={path} collapsible className="ms-9.5 mt-2 mb-0" />
-          </TabsContent>
+          <TabsContents>
+            <TabsContent value="preview">
+              <iframe
+                ref={iframeRef}
+                className="h-full w-full"
+                src={path ? `/examples/${path}` : undefined}
+              />
+            </TabsContent>
+            <TabsContent value="code">
+              <CodePreview path={path} collapsible />
+            </TabsContent>
+          </TabsContents>
         </Tabs>
 
         {/* <div className="flex items-center gap-1.5">
@@ -245,7 +244,7 @@ export const BlockPreview = ({
           </Button>
         </div> */}
       </div>
-      {mode == 'preview' && (
+      {/* {mode == 'preview' && (
         <div className="relative overflow-hidden rounded-b-md">
           <div className="absolute inset-0 -z-1 bg-[url('/images/docs/dots-bg.png')] bg-[length:800px_300px] bg-repeat opacity-5 dark:opacity-6" />
           <div className="flex justify-center">
@@ -292,7 +291,7 @@ export const BlockPreview = ({
             <CodePreview path={path} collapsible className="ms-9.5 mt-2 mb-0" />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
