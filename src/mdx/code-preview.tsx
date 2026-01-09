@@ -60,9 +60,5 @@ export const CodePreview = ({
     return <p>Loading...</p>;
   }
 
-  return (
-    <div className={cn('relative  overflow-hidden rounded', className)}>
-      <DynamicCodeBlock lang="tsx" code={codeContent ?? ''} />
-    </div>
-  );
+  return <DynamicCodeBlock lang="tsx" code={codeContent ?? ''} />;
 };

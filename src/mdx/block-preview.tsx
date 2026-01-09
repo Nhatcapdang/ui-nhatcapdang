@@ -69,7 +69,7 @@ export const BlockPreview = ({
   };
 
   return (
-    <div className="mt-3 rounded-md border not-prose">
+    <div className="border rounded-md not-prose overflow-hidden">
       <div>
         <Tabs value={mode} onValueChange={(e) => setMode(e as typeof mode)}>
           <TabsList className="flex gap-2">
@@ -186,7 +186,7 @@ export const BlockPreview = ({
             </Link>
           </TabsList>
           <TabsContents>
-            <TabsContent value="preview">
+            <TabsContent value="preview" className="overflow-hidden">
               <iframe
                 ref={iframeRef}
                 className="h-full w-full"
