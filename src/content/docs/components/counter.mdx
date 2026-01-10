@@ -58,7 +58,7 @@ For use in MDX documentation files, use the pre-configured counter variants:
 For use in React components, import and use the base Counter with custom formatters:
 
 ```tsx
-import Counter, { Formatter } from '@/components/counter';
+import Counter, { Formatter } from "@/components/counter";
 
 export default function Page() {
   return (
@@ -225,9 +225,9 @@ const customFormat = (value: number) => {
     ```tsx
     'use client';
 
-import { cn } from '@/utils/cn';
-import { useInView, useMotionValue, useSpring } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { cn } from "@/utils/cn";
+import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 interface CounterProps {
 /\*\*
@@ -408,7 +408,7 @@ These settings create a smooth, relatively quick animation that feels responsive
 The counter triggers when it enters the viewport with:
 
 ```tsx
-useInView(ref, { margin: '0px', once: true });
+useInView(ref, { margin: "0px", once: true });
 ```
 
 The `once: true` option ensures the animation only plays once, preventing re-triggers on scroll.
@@ -423,7 +423,7 @@ The `once: true` option ensures the animation only plays once, preventing re-tri
 The counter updates in real-time as the motion value changes:
 
 ```tsx
-springValue.on('change', (value) => {
+springValue.on("change", (value) => {
   ref.current.textContent = format(value);
 });
 ```

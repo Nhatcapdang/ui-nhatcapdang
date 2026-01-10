@@ -1,23 +1,24 @@
-'use client';
+"use client";
 
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
-} from '@shikijs/transformers';
-import { CodeToHastOptionsCommon } from '@shikijs/types';
-import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
-import { useEffect, useMemo, useState } from 'react';
-import { codeToHtml } from 'shiki';
+} from "@shikijs/transformers";
+import { CodeToHastOptionsCommon } from "@shikijs/types";
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { useEffect, useMemo, useState } from "react";
+import { codeToHtml } from "shiki";
 
-import { cn } from '@/utils/cn';
-import { fetchFile } from '@/lib/fetch-file';
+import { Spinner } from "@/components/ui/spinner";
+import { fetchFile } from "@/lib/fetch-file";
+import { cn } from "@/utils/cn";
 
 type Props = {
   path?: string;
   code?: string;
   collapsible?: boolean;
   removeExtraProps?: boolean;
-  lang?: CodeToHastOptionsCommon['lang'];
+  lang?: CodeToHastOptionsCommon["lang"];
   className?: string;
 };
 
@@ -25,7 +26,7 @@ export const CodePreview = ({
   path,
   code,
   removeExtraProps = false,
-  lang = 'tsx',
+  lang = "tsx",
   className,
 }: Props) => {
   const [codeContent, setCodeContent] = useState(code);
@@ -35,30 +36,30 @@ export const CodePreview = ({
 
   useEffect(() => {
     if (!codeContent && path) {
-      fetchFile(`docs/${path}`).then(setCodeContent);
+      fetchFile(`/src/${path}.tsx`).then(setCodeContent);
     }
   }, [path, codeContent]);
 
   const filteredCode = useMemo(() => {
     if (!removeExtraProps) return codeContent;
-    return codeContent?.replaceAll(/\s*\{\s*\.\.\.props\s*}\s*/g, '');
+    return codeContent?.replaceAll(/\s*\{\s*\.\.\.props\s*}\s*/g, "");
   }, [removeExtraProps, codeContent]);
 
   useEffect(() => {
     if (filteredCode)
       codeToHtml(filteredCode, {
         lang: lang,
-        theme: 'github-dark-default',
+        theme: "github-dark-default",
         transformers: [
-          transformerNotationHighlight({ matchAlgorithm: 'v3' }),
-          transformerNotationDiff({ matchAlgorithm: 'v3' }),
+          transformerNotationHighlight({ matchAlgorithm: "v3" }),
+          transformerNotationDiff({ matchAlgorithm: "v3" }),
         ],
       }).then(setHighlightedHtml);
   }, [filteredCode, lang, codeContent]);
 
   if (!highlightedHtml) {
-    return <p>Loading...</p>;
+    return <Spinner className="mx-auto my-10 size-5" />;
   }
 
-  return <DynamicCodeBlock lang="tsx" code={codeContent ?? ''} />;
+  return <DynamicCodeBlock lang="tsx" code={codeContent ?? ""} />;
 };

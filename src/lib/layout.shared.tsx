@@ -1,25 +1,15 @@
-import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 
 export function baseOptions(): BaseLayoutProps {
   return {
     themeSwitch: {
       enabled: true,
-      mode: 'light-dark-system',
+      mode: "light-dark-system",
     },
     nav: {
-      title: 'Nhatcapdang',
-      url: '/',
+      title: "Nhatcapdang",
+      url: "/",
     },
-    githubUrl: 'https://github.com/Nhatcapdang',
-    links: [
-      {
-        text: 'Home',
-        url: '/',
-      },
-      {
-        text: 'Docs',
-        url: '/docs',
-      },
-    ],
+    githubUrl: "https://github.com/Nhatcapdang",
   };
 }

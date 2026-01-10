@@ -3,10 +3,12 @@
  * Maps file paths to their component exports
  */
 
-import UI from '@/components/ui';
+import UI from "@/components/ui";
+import MarqueeDemo from "@/demo/components/marquee";
 
 export const componentRegistry: Record<string, React.ComponentType> = {
-  '/src/components/ui.tsx': UI,
+  "/src/components/ui.tsx": UI,
+  "/src/demo/components/marquee.tsx": MarqueeDemo,
   // Add more component mappings here as needed
 };
 
