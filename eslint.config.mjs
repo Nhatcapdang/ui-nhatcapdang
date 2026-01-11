@@ -13,16 +13,11 @@ const eslintConfig = defineConfig([
           patterns: [
             {
               group: [
-                '@/components/animate-ui/primitives/animate/tabs',
                 '**/animate-ui/primitives/animate/tabs',
+                '**/ui/tabs'
               ],
               message:
-                'Use Tabs from "@/components/animate-ui/components/animate/tabs" instead of "@/components/animate-ui/primitives/animate/tabs".',
-            },
-            {
-              group: ['@/components/ui/tabs', '**/ui/tabs'],
-              message:
-                'Use Tabs from "@/components/animate-ui/components/animate/tabs" instead of "@/components/ui/tabs".',
+                'Use Tabs from "@/components/animate-ui/components/animate/tabs" instead of "@/components/animate-ui/primitives/animate/tabs" or "@/components/ui/tabs".',
             },
           ],
         },
