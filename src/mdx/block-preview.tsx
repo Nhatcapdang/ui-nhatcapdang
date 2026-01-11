@@ -20,6 +20,13 @@ import {
 } from "@/components/animate-ui/components/animate/tabs";
 import { TabsContents } from "@/components/animate-ui/primitives/animate/tabs";
 import { Button } from "@/components/ui/button";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
+import { CodeBlock } from "fumadocs-ui/components/codeblock";
+import { Tab, Tabs as TabsFumadocs } from "fumadocs-ui/components/tabs";
 import { cn } from "../utils/cn";
 import { CodePreview } from "./code-preview";
 
@@ -166,18 +173,51 @@ export const BlockPreview = ({ path, registry }: IBlockPreview) => {
           </TabsList>
           <TabsContents>
             <TabsContent value="preview">
-              <iframe
-                ref={iframeRef}
-                onLoad={handleLoad}
-                className="h-max  w-full m-auto  data-[device=xs]:w-xs data-[device=sm]:w-sm data-[device=lg]:w-full"
-                title="Preview"
-                aria-label="Preview"
-                data-device={device}
-                style={{ height }}
-                src={path ? `/examples/${path}` : undefined}
-              />
+              <ResizablePanelGroup
+                orientation="horizontal"
+                // defaultValue={["100%", "0px"]}
+              >
+                <ResizablePanel defaultSize={"100%"} minSize={350}>
+                  <iframe
+                    ref={iframeRef}
+                    onLoad={handleLoad}
+                    className="h-max  w-full m-auto  data-[device=xs]:w-xs data-[device=sm]:w-sm data-[device=lg]:w-full"
+                    title="Preview"
+                    aria-label="Preview"
+                    data-device={device}
+                    style={{ height }}
+                    src={path ? `/examples/${path}` : undefined}
+                  />
+                </ResizablePanel>
+                <ResizableHandle withHandle className="scale-150" />
+                <ResizablePanel />
+              </ResizablePanelGroup>
             </TabsContent>
             <TabsContent value="code">
+              <TabsFumadocs
+                items={["npm", "yarn", "pnpm"]}
+                groupId="cli-install"
+                persist
+              >
+                <Tab value="npm">
+                  <CodeBlock
+                    lang="npm"
+                    className="ps-4"
+                  >{`npm install framer-motion clsx tailwind-merge`}</CodeBlock>
+                </Tab>
+                <Tab value="yarn">
+                  <CodeBlock
+                    lang="yarn"
+                    className="ps-4"
+                  >{`yarn add framer-motion clsx tailwind-merge`}</CodeBlock>
+                </Tab>
+                <Tab value="pnpm">
+                  <CodeBlock
+                    lang="pnpm"
+                    className="ps-4"
+                  >{`pnpm add framer-motion clsx tailwind-merge`}</CodeBlock>
+                </Tab>
+              </TabsFumadocs>
               <CodePreview path={path} collapsible />
             </TabsContent>
           </TabsContents>

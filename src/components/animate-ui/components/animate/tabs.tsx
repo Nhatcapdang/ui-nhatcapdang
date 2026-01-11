@@ -1,27 +1,24 @@
 import {
-  Tabs as TabsPrimitive,
-  TabsList as TabsListPrimitive,
-  TabsTrigger as TabsTriggerPrimitive,
   TabsContent as TabsContentPrimitive,
   TabsContents as TabsContentsPrimitive,
-  TabsHighlight as TabsHighlightPrimitive,
   TabsHighlightItem as TabsHighlightItemPrimitive,
-  type TabsProps as TabsPrimitiveProps,
-  type TabsListProps as TabsListPrimitiveProps,
-  type TabsTriggerProps as TabsTriggerPrimitiveProps,
+  TabsHighlight as TabsHighlightPrimitive,
+  TabsList as TabsListPrimitive,
+  Tabs as TabsPrimitive,
+  TabsTrigger as TabsTriggerPrimitive,
   type TabsContentProps as TabsContentPrimitiveProps,
   type TabsContentsProps as TabsContentsPrimitiveProps,
-} from '@/components/animate-ui/primitives/animate/tabs';
-import { cn } from '@/lib/cn';
+  type TabsListProps as TabsListPrimitiveProps,
+  type TabsProps as TabsPrimitiveProps,
+  type TabsTriggerProps as TabsTriggerPrimitiveProps,
+} from "@/components/animate-ui/primitives/animate/tabs";
+import { cn } from "@/lib/cn";
 
 type TabsProps = TabsPrimitiveProps;
 
 function Tabs({ className, ...props }: TabsProps) {
   return (
-    <TabsPrimitive
-      className={cn('flex flex-col gap-2', className)}
-      {...props}
-    />
+    <TabsPrimitive className={cn("flex flex-col", className)} {...props} />
   );
 }
 
@@ -32,7 +29,7 @@ function TabsList({ className, ...props }: TabsListProps) {
     <TabsHighlightPrimitive className="absolute z-0 inset-0 border border-transparent rounded-md bg-background dark:border-input dark:bg-input/30 shadow-sm">
       <TabsListPrimitive
         className={cn(
-          'bg-muted text-muted-foreground inline-flex w-fit items-center justify-center rounded-lg p-[3px]',
+          "bg-muted text-muted-foreground inline-flex w-fit items-center justify-center rounded-lg p-[3px]",
           className
         )}
         {...props}
@@ -68,7 +65,7 @@ type TabsContentProps = TabsContentPrimitiveProps;
 function TabsContent({ className, ...props }: TabsContentProps) {
   return (
     <TabsContentPrimitive
-      className={cn('outline-none', className)}
+      className={cn("outline-none", className)}
       {...props}
     />
   );
@@ -76,13 +73,13 @@ function TabsContent({ className, ...props }: TabsContentProps) {
 
 export {
   Tabs,
+  TabsContent,
+  TabsContents,
   TabsList,
   TabsTrigger,
-  TabsContents,
-  TabsContent,
-  type TabsProps,
-  type TabsListProps,
-  type TabsTriggerProps,
-  type TabsContentsProps,
   type TabsContentProps,
+  type TabsContentsProps,
+  type TabsListProps,
+  type TabsProps,
+  type TabsTriggerProps,
 };
