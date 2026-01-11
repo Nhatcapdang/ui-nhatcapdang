@@ -1,34 +1,21 @@
 "use client";
 
-import {
-  Code2Icon,
-  EyeIcon,
-  LaptopIcon,
-  MaximizeIcon,
-  MonitorIcon,
-  RotateCcwIcon,
-  SmartphoneIcon,
-} from "lucide-react";
+import { Code2Icon, EyeIcon, MaximizeIcon, RotateCcwIcon } from "lucide-react";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import {
   Tabs,
   TabsContent,
+  TabsContents,
   TabsList,
   TabsTrigger,
 } from "@/components/animate-ui/components/animate/tabs";
-import { TabsContents } from "@/components/animate-ui/primitives/animate/tabs";
 import { Button } from "@/components/ui/button";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
 import { CodeBlock } from "fumadocs-ui/components/codeblock";
 import { Tab, Tabs as TabsFumadocs } from "fumadocs-ui/components/tabs";
-import { cn } from "../utils/cn";
 import { CodePreview } from "./code-preview";
+import { Preview } from "./preview";
 
 export type IBlockPreview = {
   path?: string;
@@ -38,9 +25,6 @@ export type IBlockPreview = {
 export const BlockPreview = ({ path, registry }: IBlockPreview) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  const [device, setDevice] = useState<"xs" | "sm" | "lg">("lg");
-  const [height, setHeight] = useState("70vh");
-
   const openPreview = () => {
     window.open(`/examples/${path}`, "_blank");
   };
@@ -48,20 +32,6 @@ export const BlockPreview = ({ path, registry }: IBlockPreview) => {
   const refreshIframe = () => {
     if (iframeRef.current) {
       iframeRef.current.src = iframeRef.current.src ?? "";
-    }
-  };
-  const handleLoad = () => {
-    if (iframeRef.current) {
-      try {
-        const contentHeight =
-          iframeRef.current.contentWindow?.document.body.scrollHeight;
-        setHeight(`${contentHeight}px`);
-      } catch (error) {
-        console.error(
-          "Cannot access iframe content due to cross-origin restrictions:",
-          error
-        );
-      }
     }
   };
 
@@ -90,41 +60,10 @@ export const BlockPreview = ({ path, registry }: IBlockPreview) => {
               <Button
                 size="icon"
                 variant="ghost"
-                className={cn("size-8 cursor-pointer", {
-                  "bg-accent": device === "xs",
-                })}
-                onClick={() => setDevice("xs")}
-              >
-                <SmartphoneIcon className="!size-5" />
-              </Button>
-
-              <Button
-                size="icon"
-                variant="ghost"
-                className={cn("size-8 cursor-pointer", {
-                  "bg-accent": device === "sm",
-                })}
-                onClick={() => setDevice("sm")}
-              >
-                <LaptopIcon className="!size-5" />
-              </Button>
-
-              <Button
-                size="icon"
-                variant="ghost"
-                className={cn("size-8 cursor-pointer", {
-                  "bg-accent": device === "lg",
-                })}
-                onClick={() => setDevice("lg")}
-              >
-                <MonitorIcon className="!size-5" />
-              </Button>
-              <hr className="mx-1 h-6 border-s max-sm:hidden" />
-              <Button
-                size="icon"
-                variant="ghost"
-                className="size-8 cursor-pointer"
+                className="cursor-pointer"
                 onClick={openPreview}
+                aria-label="Open preview in new tab"
+                title="Open preview in new tab"
               >
                 <MaximizeIcon className="!size-5" />
               </Button>
@@ -173,27 +112,10 @@ export const BlockPreview = ({ path, registry }: IBlockPreview) => {
           </TabsList>
           <TabsContents>
             <TabsContent value="preview">
-              <ResizablePanelGroup
-                orientation="horizontal"
-                // defaultValue={["100%", "0px"]}
-              >
-                <ResizablePanel defaultSize={"100%"} minSize={350}>
-                  <iframe
-                    ref={iframeRef}
-                    onLoad={handleLoad}
-                    className="h-max  w-full m-auto  data-[device=xs]:w-xs data-[device=sm]:w-sm data-[device=lg]:w-full"
-                    title="Preview"
-                    aria-label="Preview"
-                    data-device={device}
-                    style={{ height }}
-                    src={path ? `/examples/${path}` : undefined}
-                  />
-                </ResizablePanel>
-                <ResizableHandle withHandle className="scale-150" />
-                <ResizablePanel />
-              </ResizablePanelGroup>
+              <Preview path={path ? `${path}` : undefined} />
             </TabsContent>
-            <TabsContent value="code">
+            <TabsContent value="code" className="p-4">
+              <h4 className="mb-4 text-lg font-bold"> CLI Installation</h4>
               <TabsFumadocs
                 items={["npm", "yarn", "pnpm"]}
                 groupId="cli-install"
@@ -218,6 +140,7 @@ export const BlockPreview = ({ path, registry }: IBlockPreview) => {
                   >{`pnpm add framer-motion clsx tailwind-merge`}</CodeBlock>
                 </Tab>
               </TabsFumadocs>
+              <h4 className="mb-4 text-lg font-bold"> Manual</h4>
               <CodePreview path={path} collapsible />
             </TabsContent>
           </TabsContents>

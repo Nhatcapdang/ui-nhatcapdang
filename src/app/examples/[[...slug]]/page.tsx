@@ -10,6 +10,7 @@ export default async function ExamplePage(props: PageProps) {
   <MarqueeDemo />;
   try {
     const path = ((await props.params).slug ?? []).join("/");
+
     const Component = await import(`@/${path}`).then((e) => e.default);
     return Component ? <Component /> : notFound();
   } catch (e) {

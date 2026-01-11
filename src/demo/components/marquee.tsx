@@ -12,13 +12,12 @@ export default function MarqueeDemo() {
 
   return (
     <div
-      className="relative mt-8 sm:mt-12 lg:mt-16 rounded-lg overflow-hidden"
-      role="list"
+      className="flex flex-col justify-center items-center gap-4 h-screen overflow-hidden"
       aria-label="User testimonials"
     >
-      {/* First row - scrolling left to right */}
       <Marquee
         pauseOnHover
+        reverse
         className="[--duration:40s] [--gap:1rem] sm:[--gap:1.5rem]"
       >
         {testimonials.slice(0, 6).map((testimonial) => (
@@ -26,13 +25,11 @@ export default function MarqueeDemo() {
         ))}
       </Marquee>
 
-      {/* Second row - scrolling right to left */}
       <Marquee
         pauseOnHover
-        reverse
-        className="mt-4 sm:mt-6 [--duration:40s] [--gap:1rem] sm:[--gap:1.5rem]"
+        className="[--duration:40s] [--gap:1rem] sm:[--gap:1.5rem]"
       >
-        {testimonials.slice(6, 12).map((testimonial) => (
+        {testimonials.slice(0, 6).map((testimonial) => (
           <div key={testimonial.id}>{testimonial.name}</div>
         ))}
       </Marquee>

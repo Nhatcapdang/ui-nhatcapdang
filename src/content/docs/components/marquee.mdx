@@ -1,16 +1,64 @@
 ---
 title: Marquee
-description: A scroll-based velocity text animation component with skew effects
+description: A marquee component that scrolls text horizontally, Marquee is a client-side React component that scrolls text horizontally or vertically.
 ---
 
-## Overview
+## Usage
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Preview">Preview</TabsTrigger>
+        <TabsTrigger value="Usage">Usage</TabsTrigger>
+        <TabsTrigger value="Code">Code</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Preview">
+         <Preview path="demo/components/marquee"/>
+        </TabsContent>
+        <TabsContent value="Usage">
+          <CodePreview path="demo/components/marquee" />
+        </TabsContent>
+        <TabsContent value="Code">
+          <CodePreview path="components/marquee" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
 
-VelocityText is a client-side React component that creates dynamic text animations based on scroll velocity. As users scroll, the text moves horizontally with a skew effect that responds to scrolling speed, creating an engaging visual experience.
+## Installation
 
-<BlockPreview
-  path="components/marquee"
-  registry="ui"
-  lgHeight={1200}
-  mdHeight={1000}
-  smHeight={700}
-/>
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="npm">npm</TabsTrigger>
+        <TabsTrigger value="yarn">yarn</TabsTrigger>
+        <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="npm" className='[&>figure]:my-0 [&>figure]:border-none'>
+
+```
+npm install framer-motion clsx tailwind-merge
+```
+        </TabsContent>
+        <TabsContent value="yarn" className='[&>figure]:my-0 [&>figure]:border-none'>
+
+```
+yarn add framer-motion clsx tailwind-merge
+```
+
+        </TabsContent>
+        <TabsContent value="pnpm" className='[&>figure]:my-0 [&>figure]:border-none'>
+
+```
+pnpm add framer-motion clsx tailwind-merge
+```
+
+</TabsContent>
+</TabsContents>
+</Tabs>
+
+## Props 
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `reverse` | `boolean` | `false` | Whether to reverse the animation direction |
+| `pauseOnHover` | `boolean` | `false` | Whether to pause the animation on hover |
+| `vertical` | `boolean` | `false` | Whether to animate vertically instead of horizontally |
+| `repeat` | `number` | `4` | Number of times to repeat the content |
