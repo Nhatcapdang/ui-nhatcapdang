@@ -8,7 +8,8 @@
     "start": "next start",
     "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
     "postinstall": "fumadocs-mdx",
-    "lint": "eslint"
+    "lint": "eslint",
+    "registry:build": "shadcn build"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
@@ -26,6 +27,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-resizable-panels": "^4.3.3",
+    "shadcn": "^3.6.3",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
