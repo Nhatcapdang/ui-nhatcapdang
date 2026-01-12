@@ -1,3 +1,4 @@
+import { AISearch, AISearchTrigger } from "@/components/search";
 import { RootProvider } from "fumadocs-ui/provider/next";
 import { Inter } from "next/font/google";
 import "./global.css";
@@ -10,7 +11,10 @@ export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen ">
-        <RootProvider>{children}</RootProvider>
+        <AISearch>
+          <RootProvider>{children}</RootProvider>
+          <AISearchTrigger />
+        </AISearch>
       </body>
     </html>
   );
