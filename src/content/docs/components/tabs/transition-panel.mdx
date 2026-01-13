@@ -1,0 +1,58 @@
+---
+title: Transition Panel
+description: A transition panel component that smoothly animates between different content states with customizable transitions and variants.
+---
+
+## Tabs with Transition Panel
+   <Tabs>
+     <TabsList>
+       <TabsTrigger value="Preview">Preview</TabsTrigger>
+       <TabsTrigger value="Usage">Usage</TabsTrigger>
+       <TabsTrigger value="Code">Code</TabsTrigger>
+     </TabsList>
+     <TabsContents className="border rounded-xl mt-1">
+       <TabsContent value="Preview">
+        <Preview path="demo/components/tabs/transition-panel-1"/>
+       </TabsContent>
+       <TabsContent value="Usage">
+         <CodePreview path="demo/components/tabs/transition-panel-1" />
+       </TabsContent>
+       <TabsContent value="Code">
+         <CodePreview path="components/transition-panel" />
+       </TabsContent>
+     </TabsContents>
+   </Tabs>
+
+
+## Card with Transition Panel
+   <Tabs>
+     <TabsList>
+       <TabsTrigger value="Preview">Preview</TabsTrigger>
+       <TabsTrigger value="Usage">Usage</TabsTrigger>
+       <TabsTrigger value="Code">Code</TabsTrigger>
+     </TabsList>
+     <TabsContents className="border rounded-xl mt-1">
+       <TabsContent value="Preview">
+        <Preview path="demo/components/tabs/transition-panel-2"/>
+       </TabsContent>
+       <TabsContent value="Usage">
+         <CodePreview path="demo/components/tabs/transition-panel-2" />
+       </TabsContent>
+       <TabsContent value="Code">
+         <CodePreview path="components/transition-panel" />
+       </TabsContent>
+     </TabsContents>
+   </Tabs>
+
+## Installation
+
+<Installation componentName="transition-panel" />
+
+## Props
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode[]` | - | Array of React nodes to render as panel content |
+| `activeIndex` | `number` | - | Index of the currently active child to display |
+| `className` | `string` | - | Additional CSS classes for the container |
+| `transition` | `Transition` | - | Framer Motion transition configuration |
+| `variants` | `{ enter: Variant; center: Variant; exit: Variant }` | - | Custom animation variants for enter, center, and exit states |
