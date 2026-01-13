@@ -40,14 +40,9 @@ export const CodePreview = ({
     }
   }, [path, codeContent]);
 
-  const filteredCode = useMemo(() => {
-    if (!removeExtraProps) return codeContent;
-    return codeContent?.replaceAll(/\s*\{\s*\.\.\.props\s*}\s*/g, '');
-  }, [removeExtraProps, codeContent]);
-
-  if (isLoading || !filteredCode) {
+  if (isLoading || !codeContent) {
     return <Spinner className="mx-auto my-10 size-5" />;
   }
 
-  return <DynamicCodeBlock lang={lang} code={filteredCode} />;
+  return <DynamicCodeBlock lang={lang} code={codeContent} />;
 };
