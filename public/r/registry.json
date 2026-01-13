@@ -1,4 +1,5 @@
 {
+	"version": "0.0.1",
 	"$schema": "https://ui.shadcn.com/schema/registry.json",
 	"name": "Nhatcapdang",
 	"homepage": "https://nhatcapdang.com",
@@ -39,6 +40,22 @@
 					}
 				}
 			}
+		},
+		{
+			"name": "transition-panel",
+			"type": "registry:component",
+			"title": "Transition Panel",
+			"description": "A transition panel component that smoothly animates between different content states with customizable transitions and variants using Framer Motion.",
+			"dependencies": [
+				"motion"
+			],
+			"files": [
+				{
+					"path": "src/components/transition-panel.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/transition-panel.tsx"
+				}
+			]
 		}
 	]
 }

@@ -5,7 +5,6 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/animate-ui/components/animate/tabs';
-import { Button } from '@/components/ui/button';
 import { CodeBlock } from 'fumadocs-ui/components/codeblock';
 import { memo } from 'react';
 

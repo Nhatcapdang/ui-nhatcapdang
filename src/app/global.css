@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "fumadocs-ui/css/neutral.css";
-@import "fumadocs-ui/css/preset.css";
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -226,4 +226,8 @@ html body[data-scroll-locked] {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.transform-center {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
 }
