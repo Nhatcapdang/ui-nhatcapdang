@@ -2,7 +2,7 @@
 	"version": "0.0.1",
 	"$schema": "https://ui.shadcn.com/schema/registry.json",
 	"name": "Nhatcapdang",
-	"homepage": "https://nhatcapdang.com",
+	"homepage": "https://ui.nhatcapdang.com",
 	"items": [
 		{
 			"name": "marquee",
