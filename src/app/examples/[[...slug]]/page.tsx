@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
 interface PageProps {
   params: Promise<{
     slug?: string[];
@@ -7,8 +7,8 @@ interface PageProps {
 
 export default async function ExamplePage(props: PageProps) {
   try {
-    const path = ((await props.params).slug ?? []).join('/');
-    const Component = await import(`@/${path}`).then((e) => e.default);
+    const path = ((await props.params).slug ?? []).join("/");
+    const Component = await import(`../../../${path}`).then((e) => e.default);
     return Component ? <Component /> : notFound();
   } catch (e) {
     console.error(e);

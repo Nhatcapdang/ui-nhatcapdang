@@ -27,43 +27,41 @@ function TabsTransitionPanel() {
   ];
 
   return (
-    <div className="transform-center">
-      <div>
-        <div className="mb-4 flex space-x-2">
-          {ITEMS.map((item, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              className={`rounded-md px-3 py-1 text-sm font-medium ${
-                activeIndex === index
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-accent text-accent-foreground'
-              }`}
-            >
-              {item.title}
-            </button>
-          ))}
-        </div>
-        <div className="overflow-hidden border-t border-border">
-          <TransitionPanel
-            activeIndex={activeIndex}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
-            variants={{
-              enter: { opacity: 0, y: -50, filter: 'blur(4px)' },
-              center: { opacity: 1, y: 0, filter: 'blur(0px)' },
-              exit: { opacity: 0, y: 50, filter: 'blur(4px)' },
-            }}
+    <div className="transform-center max-w-sm">
+      <div className="mb-4 flex space-x-2">
+        {ITEMS.map((item, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            className={`rounded-md px-3 py-1 text-sm font-medium ${
+              activeIndex === index
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-accent text-accent-foreground'
+            }`}
           >
-            {ITEMS.map((item, index) => (
-              <div key={index} className="py-2">
-                <h3 className="mb-2 font-medium text-foreground">
-                  {item.subtitle}
-                </h3>
-                <p className="text-muted-foreground">{item.content}</p>
-              </div>
-            ))}
-          </TransitionPanel>
-        </div>
+            {item.title}
+          </button>
+        ))}
+      </div>
+      <div className="overflow-hidden border-t border-border">
+        <TransitionPanel
+          activeIndex={activeIndex}
+          transition={{ duration: 0.2, ease: 'easeInOut' }}
+          variants={{
+            enter: { opacity: 0, y: -50, filter: 'blur(4px)' },
+            center: { opacity: 1, y: 0, filter: 'blur(0px)' },
+            exit: { opacity: 0, y: 50, filter: 'blur(4px)' },
+          }}
+        >
+          {ITEMS.map((item, index) => (
+            <div key={index} className="py-2">
+              <h3 className="mb-2 font-medium text-foreground">
+                {item.subtitle}
+              </h3>
+              <p className="text-muted-foreground">{item.content}</p>
+            </div>
+          ))}
+        </TransitionPanel>
       </div>
     </div>
   );

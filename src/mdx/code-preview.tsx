@@ -1,65 +1,48 @@
-"use client";
+'use client';
 
-import {
-  transformerNotationDiff,
-  transformerNotationHighlight,
-} from "@shikijs/transformers";
-import { CodeToHastOptionsCommon } from "@shikijs/types";
-import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
-import { useEffect, useMemo, useState } from "react";
-import { codeToHtml } from "shiki";
+import { CodeToHastOptionsCommon } from '@shikijs/types';
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
+import { useEffect, useMemo, useState } from 'react';
 
-import { Spinner } from "@/components/ui/spinner";
-import { fetchFile } from "@/lib/fetch-file";
-import { cn } from "@/utils/cn";
+import { Spinner } from '@/components/ui/spinner';
+import { fetchFile } from '@/lib/fetch-file';
 
 type Props = {
   path?: string;
   code?: string;
   collapsible?: boolean;
   removeExtraProps?: boolean;
-  lang?: CodeToHastOptionsCommon["lang"];
-  className?: string;
+  lang?: CodeToHastOptionsCommon['lang'];
 };
 
 export const CodePreview = ({
   path,
   code,
   removeExtraProps = false,
-  lang = "tsx",
-  className,
+  lang = 'tsx',
 }: Props) => {
   const [codeContent, setCodeContent] = useState(code);
-  const [highlightedHtml, setHighlightedHtml] = useState<string | undefined>(
-    undefined
-  );
+  const [isLoading, setIsLoading] = useState(!!path && !code);
 
   useEffect(() => {
     if (!codeContent && path) {
-      fetchFile(`/src/${path}.tsx`).then(setCodeContent);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsLoading(true);
+      fetchFile(`/src/${path}.tsx`)
+        .then(setCodeContent)
+        .catch(error => {
+          console.error('Failed to fetch file:', error);
+          setCodeContent('// Error loading file');
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
   }, [path, codeContent]);
 
-  const filteredCode = useMemo(() => {
-    if (!removeExtraProps) return codeContent;
-    return codeContent?.replaceAll(/\s*\{\s*\.\.\.props\s*}\s*/g, "");
-  }, [removeExtraProps, codeContent]);
-
-  useEffect(() => {
-    if (filteredCode)
-      codeToHtml(filteredCode, {
-        lang: lang,
-        theme: "github-dark-default",
-        transformers: [
-          transformerNotationHighlight({ matchAlgorithm: "v3" }),
-          transformerNotationDiff({ matchAlgorithm: "v3" }),
-        ],
-      }).then(setHighlightedHtml);
-  }, [filteredCode, lang, codeContent]);
-
-  if (!highlightedHtml) {
+  if (isLoading || !codeContent) {
     return <Spinner className="mx-auto my-10 size-5" />;
   }
 
-  return <DynamicCodeBlock lang="tsx" code={codeContent ?? ""} />;
+  return <DynamicCodeBlock lang={lang} code={codeContent} />;
 };

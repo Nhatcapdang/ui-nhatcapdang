@@ -1,7 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import { AnimatePresence, Transition, motion } from 'motion/react';
+import * as React from 'react';
 
 import { cn } from '@/lib/cn';
 
@@ -178,7 +178,7 @@ function Highlight<T extends React.ElementType = 'div'>({
     React.useState<string>('');
 
   const safeSetActiveValue = (id: string | null) => {
-    setActiveValue((prev) => {
+    setActiveValue(prev => {
       if (prev !== id) {
         onValueChange?.(id);
         return id;
@@ -204,7 +204,7 @@ function Highlight<T extends React.ElementType = 'div'>({
         height: bounds.height + offset.height,
       };
 
-      setBoundsState((prev) => {
+      setBoundsState(prev => {
         if (
           prev &&
           prev.top === newBounds.top &&
@@ -224,7 +224,7 @@ function Highlight<T extends React.ElementType = 'div'>({
   };
 
   const clearBounds = React.useCallback(() => {
-    setBoundsState((prev) => (prev === null ? prev : null));
+    setBoundsState(prev => (prev === null ? prev : null));
   }, []);
 
   React.useEffect(() => {
@@ -635,6 +635,6 @@ export {
   Highlight,
   HighlightItem,
   useHighlight,
-  type HighlightProps,
   type HighlightItemProps,
+  type HighlightProps,
 };

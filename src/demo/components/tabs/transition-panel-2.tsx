@@ -1,6 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
 import { TransitionPanel } from '@/components/transition-panel';
+import React, { useEffect, useState } from 'react';
 import { useMeasure } from 'react-use';
 function Button({
   onClick,
@@ -22,7 +22,6 @@ function Button({
 export default function TransitionPanelCard() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [ref, { height = 0 }] = useMeasure<HTMLDivElement>();
 
   const FEATURES = [
     {
@@ -75,29 +74,30 @@ export default function TransitionPanelCard() {
 
   return (
     <section className="transform-center">
-      <div className="w-[364px] overflow-hidden rounded-xl border bg-card">
+      <div className="max-w-sm overflow-hidden rounded-xl border bg-card m-auto">
         <TransitionPanel
           activeIndex={activeIndex}
           variants={{
-            enter: (direction) => ({
+            enter: direction => ({
               x: direction > 0 ? 364 : -364,
               opacity: 0,
-              height: height && height > 0 ? height : 'auto',
+              minHeight: 'max-content',
               position: 'initial',
             }),
             center: {
               zIndex: 1,
               x: 0,
               opacity: 1,
-              height: height && height > 0 ? height : 'auto',
+              minHeight: 'max-content',
             },
-            exit: (direction) => ({
+            exit: direction => ({
               zIndex: 0,
               x: direction < 0 ? 364 : -364,
               opacity: 0,
               position: 'absolute',
               top: 0,
               width: '100%',
+              minHeight: 'max-content',
             }),
           }}
           transition={{
@@ -107,7 +107,7 @@ export default function TransitionPanelCard() {
           custom={direction}
         >
           {FEATURES.map((feature, index) => (
-            <div key={index} className="px-4 pt-4" ref={ref}>
+            <div key={index} className="px-4 pt-4 h-max">
               <h3 className="mb-0.5 font-medium text-foreground">
                 {feature.title}
               </h3>
@@ -115,7 +115,7 @@ export default function TransitionPanelCard() {
             </div>
           ))}
         </TransitionPanel>
-        <div className="flex justify-between p-4 mt-4">
+        <div className="flex justify-between p-4 ">
           {activeIndex > 0 ? (
             <Button onClick={() => handleSetActiveIndex(activeIndex - 1)}>
               Previous
