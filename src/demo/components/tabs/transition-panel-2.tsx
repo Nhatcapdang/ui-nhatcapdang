@@ -1,7 +1,7 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import { TransitionPanel } from '@/components/transition-panel';
-import { useMeasure } from 'react-use';
+"use client";
+import { TransitionPanel } from "@/components/transition-panel";
+import React, { useEffect, useState } from "react";
+import { useMeasure } from "react-use";
 function Button({
   onClick,
   children,
@@ -26,24 +26,24 @@ export default function TransitionPanelCard() {
 
   const FEATURES = [
     {
-      title: 'Brand',
+      title: "Brand",
       description:
-        'Develop a distinctive brand identity with tailored logos and guidelines to ensure consistent messaging across all platforms.',
+        "Develop a distinctive brand identity with tailored logos and guidelines to ensure consistent messaging across all platforms.",
     },
     {
-      title: 'Product',
+      title: "Product",
       description:
-        'Design and refine products that excel in user experience, meeting needs effectively and creating memorable interactions. We specialize in web applications.',
+        "Design and refine products that excel in user experience, meeting needs effectively and creating memorable interactions. We specialize in web applications.",
     },
     {
-      title: 'Website',
+      title: "Website",
       description:
-        'Create impactful websites that combine beautiful aesthetics with functional design, ensuring a superior online presence.',
+        "Create impactful websites that combine beautiful aesthetics with functional design, ensuring a superior online presence.",
     },
     {
-      title: 'Design System',
+      title: "Design System",
       description:
-        'Develop a design system that unifies your brand identity, ensuring consistency across all platforms and products.',
+        "Develop a design system that unifies your brand identity, ensuring consistency across all platforms and products.",
     },
   ];
 
@@ -66,10 +66,10 @@ export default function TransitionPanelCard() {
       zIndex: 0,
       x: direction < 0 ? 364 : -364,
       opacity: 0,
-      position: 'absolute',
+      position: "absolute",
       top: 0,
       left: 0,
-      width: '100%',
+      width: "100%",
     }),
   };
 
@@ -82,26 +82,26 @@ export default function TransitionPanelCard() {
             enter: (direction) => ({
               x: direction > 0 ? 364 : -364,
               opacity: 0,
-              height: height && height > 0 ? height : 'auto',
-              position: 'initial',
+              height: height && height > 0 ? height : "auto",
+              position: "initial",
             }),
             center: {
               zIndex: 1,
               x: 0,
               opacity: 1,
-              height: height && height > 0 ? height : 'auto',
+              height: height && height > 0 ? height : "auto",
             },
             exit: (direction) => ({
               zIndex: 0,
               x: direction < 0 ? 364 : -364,
               opacity: 0,
-              position: 'absolute',
+              position: "absolute",
               top: 0,
-              width: '100%',
+              width: "100%",
             }),
           }}
           transition={{
-            x: { type: 'spring', stiffness: 300, damping: 30 },
+            x: { type: "spring", stiffness: 300, damping: 30 },
             opacity: { duration: 0.2 },
           }}
           custom={direction}
@@ -130,7 +130,7 @@ export default function TransitionPanelCard() {
                 : handleSetActiveIndex(activeIndex + 1)
             }
           >
-            {activeIndex === FEATURES.length - 1 ? 'Close' : 'Next'}
+            {activeIndex === FEATURES.length - 1 ? "Close" : "Next"}
           </Button>
         </div>
       </div>
