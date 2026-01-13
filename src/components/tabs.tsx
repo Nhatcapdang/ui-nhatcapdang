@@ -1,25 +1,26 @@
-'use client';
+"use client";
 
-import * as React from 'react';
+import * as React from "react";
 import {
-  type ComponentProps,
   createContext,
-  type ReactNode,
   useContext,
   useEffect,
   useId,
   useMemo,
   useState,
-} from 'react';
-import { cn } from '../lib/cn';
-import * as Unstyled from './ui/tabs';
+  type ComponentProps,
+  type ReactNode,
+} from "react";
+import { cn } from "../lib/cn";
+import * as Unstyled from "./ui/tabs";
 
 type CollectionKey = string | symbol;
 
-export interface TabsProps extends Omit<
-  ComponentProps<typeof Unstyled.Tabs>,
-  'value' | 'onValueChange'
-> {
+export interface TabsProps
+  extends Omit<
+    ComponentProps<typeof Unstyled.Tabs>,
+    "value" | "onValueChange"
+  > {
   /**
    * Use simple mode instead of advanced usage as documented in https://radix-ui.com/primitives/docs/components/tabs.
    */
@@ -45,7 +46,7 @@ const TabsContext = createContext<{
 
 function useTabContext() {
   const ctx = useContext(TabsContext);
-  if (!ctx) throw new Error('You must wrap your component in <Tabs>');
+  if (!ctx) throw new Error("You must wrap your component in <Tabs>");
   return ctx;
 }
 
@@ -57,12 +58,12 @@ export const TabsList = React.forwardRef<
     ref={ref}
     {...props}
     className={cn(
-      'flex gap-3.5 text-fd-secondary-foreground overflow-x-auto px-4 not-prose',
-      props.className,
+      "flex gap-3.5 text-fd-secondary-foreground overflow-x-auto px-4 not-prose",
+      props.className
     )}
   />
 ));
-TabsList.displayName = 'TabsList';
+TabsList.displayName = "TabsList";
 
 export const TabsTrigger = React.forwardRef<
   React.ComponentRef<typeof Unstyled.TabsTrigger>,
@@ -72,12 +73,12 @@ export const TabsTrigger = React.forwardRef<
     ref={ref}
     {...props}
     className={cn(
-      'inline-flex items-center gap-2 whitespace-nowrap text-fd-muted-foreground border-b border-transparent py-2 text-sm font-medium transition-colors [&_svg]:size-4 hover:text-fd-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=active]:border-fd-primary data-[state=active]:text-fd-primary',
-      props.className,
+      "inline-flex items-center gap-2 whitespace-nowrap text-fd-muted-foreground border-b border-transparent py-2 text-sm font-medium transition-colors [&_svg]:size-4 hover:text-fd-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=active]:border-fd-primary data-[state=active]:text-fd-primary",
+      props.className
     )}
   />
 ));
-TabsTrigger.displayName = 'TabsTrigger';
+TabsTrigger.displayName = "TabsTrigger";
 
 export function Tabs({
   ref,
@@ -95,8 +96,8 @@ export function Tabs({
     <Unstyled.Tabs
       ref={ref}
       className={cn(
-        'flex flex-col overflow-hidden rounded-xl border bg-fd-secondary my-4',
-        className,
+        "flex flex-col overflow-hidden rounded-xl border bg-fd-secondary my-4",
+        className
       )}
       value={value}
       onValueChange={(v: string) => {
@@ -107,7 +108,9 @@ export function Tabs({
     >
       {items && (
         <TabsList>
-          {label && <span className="text-sm font-medium my-auto me-auto">{label}</span>}
+          {label && (
+            <span className="text-sm font-medium my-auto me-auto">{label}</span>
+          )}
           {items.map((item) => (
             <TabsTrigger key={item} value={escapeValue(item)}>
               {item}
@@ -115,14 +118,17 @@ export function Tabs({
           ))}
         </TabsList>
       )}
-      <TabsContext.Provider value={useMemo(() => ({ items, collection }), [collection, items])}>
+      <TabsContext.Provider
+        value={useMemo(() => ({ items, collection }), [collection, items])}
+      >
         {props.children}
       </TabsContext.Provider>
     </Unstyled.Tabs>
   );
 }
 
-export interface TabProps extends Omit<ComponentProps<typeof Unstyled.TabsContent>, 'value'> {
+export interface TabProps
+  extends Omit<ComponentProps<typeof Unstyled.TabsContent>, "value"> {
   /**
    * Value of tab, detect from index if unspecified.
    */
@@ -137,7 +143,7 @@ export function Tab({ value, ...props }: TabProps) {
     items?.at(useCollectionIndex());
   if (!resolved)
     throw new Error(
-      'Failed to resolve tab `value`, please pass a `value` prop to the Tab component.',
+      "Failed to resolve tab `value`, please pass a `value` prop to the Tab component."
     );
 
   return (
@@ -157,8 +163,8 @@ export function TabsContent({
       value={value}
       forceMount
       className={cn(
-        'p-4 text-[0.9375rem] bg-fd-background rounded-xl outline-none prose-no-margin data-[state=inactive]:hidden [&>figure:only-child]:-m-4 [&>figure:only-child]:border-none',
-        className,
+        "p-4 text-[0.9375rem] bg-fd-background rounded-xl outline-none prose-no-margin data-[state=inactive]:hidden [&>figure:only-child]:-m-4 [&>figure:only-child]:border-none",
+        className
       )}
       {...props}
     >
@@ -192,5 +198,5 @@ function useCollectionIndex() {
  * only escape whitespaces in values in simple mode
  */
 function escapeValue(v: string): string {
-  return v.toLowerCase().replace(/\s/, '-');
+  return v.toLowerCase().replace(/\s/, "-");
 }

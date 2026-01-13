@@ -1,0 +1,61 @@
+{
+	"version": "0.0.1",
+	"$schema": "https://ui.shadcn.com/schema/registry.json",
+	"name": "Nhatcapdang",
+	"homepage": "https://nhatcapdang.com",
+	"items": [
+		{
+			"name": "marquee",
+			"type": "registry:component",
+			"title": "Marquee",
+			"description": "A smooth scrolling marquee component that displays content horizontally or vertically with customizable animation options.",
+			"files": [
+				{
+					"path": "src/components/marquee.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/marquee.tsx"
+				}
+			],
+			"cssVars": {
+				"theme": {
+					"animate-marquee": "marquee var(--duration) infinite linear",
+					"animate-marquee-vertical": "marquee-vertical var(--duration) linear infinite"
+				}
+			},
+			"css": {
+				"@keyframes marquee": {
+					"0%": {
+						"transform": "translateX(0)"
+					},
+					"100%": {
+						"transform": "translateX(calc(-100% - var(--gap)))"
+					}
+				},
+				"@keyframes marquee-vertical": {
+					"100%": {
+						"transform": "translateY(0)"
+					},
+					"0%": {
+						"transform": "translateY(calc(-100% - var(--gap)))"
+					}
+				}
+			}
+		},
+		{
+			"name": "transition-panel",
+			"type": "registry:component",
+			"title": "Transition Panel",
+			"description": "A transition panel component that smoothly animates between different content states with customizable transitions and variants using Framer Motion.",
+			"dependencies": [
+				"motion"
+			],
+			"files": [
+				{
+					"path": "src/components/transition-panel.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/transition-panel.tsx"
+				}
+			]
+		}
+	]
+}
