@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Code2Icon, EyeIcon, MaximizeIcon, RotateCcwIcon } from "lucide-react";
-import Link from "next/link";
-import { useRef } from "react";
+import { Code2Icon, EyeIcon, MaximizeIcon, RotateCcwIcon } from 'lucide-react';
+import Link from 'next/link';
+import { useRef } from 'react';
 
 import {
   Tabs,
@@ -10,12 +10,11 @@ import {
   TabsContents,
   TabsList,
   TabsTrigger,
-} from "@/components/animate-ui/components/animate/tabs";
-import { Button } from "@/components/ui/button";
-import { CodeBlock } from "fumadocs-ui/components/codeblock";
-import { Tab, Tabs as TabsFumadocs } from "fumadocs-ui/components/tabs";
-import { CodePreview } from "./code-preview";
-import { Preview } from "./preview";
+} from '@/components/animate-ui/components/animate/tabs';
+import { Button } from '@/components/ui/button';
+import { CodePreview } from './code-preview';
+import Installation from './installation';
+import { Preview } from './preview';
 
 export type IBlockPreview = {
   path?: string;
@@ -26,12 +25,12 @@ export const BlockPreview = ({ path, registry }: IBlockPreview) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const openPreview = () => {
-    window.open(`/examples/${path}`, "_blank");
+    window.open(`/examples/${path}`, '_blank');
   };
 
   const refreshIframe = () => {
     if (iframeRef.current) {
-      iframeRef.current.src = iframeRef.current.src ?? "";
+      iframeRef.current.src = iframeRef.current.src ?? '';
     }
   };
 
@@ -116,8 +115,9 @@ export const BlockPreview = ({ path, registry }: IBlockPreview) => {
             </TabsContent>
             <TabsContent value="code" className="p-4">
               <h4 className="mb-4 text-lg font-bold"> CLI Installation</h4>
-              <TabsFumadocs
-                items={["npm", "yarn", "pnpm"]}
+              <Installation componentName={registry ?? ''} />
+              {/* <TabsFumadocs
+                items={['npm', 'yarn', 'pnpm']}
                 groupId="cli-install"
                 persist
               >
@@ -139,8 +139,8 @@ export const BlockPreview = ({ path, registry }: IBlockPreview) => {
                     className="ps-4"
                   >{`pnpm add framer-motion clsx tailwind-merge`}</CodeBlock>
                 </Tab>
-              </TabsFumadocs>
-              <h4 className="mb-4 text-lg font-bold"> Manual</h4>
+              </TabsFumadocs> */}
+              <h4 className="my-4 text-lg font-bold"> Manual</h4>
               <CodePreview path={path} collapsible />
             </TabsContent>
           </TabsContents>

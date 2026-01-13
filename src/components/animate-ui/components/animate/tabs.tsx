@@ -11,14 +11,14 @@ import {
   type TabsListProps as TabsListPrimitiveProps,
   type TabsProps as TabsPrimitiveProps,
   type TabsTriggerProps as TabsTriggerPrimitiveProps,
-} from "@/components/animate-ui/primitives/animate/tabs";
-import { cn } from "@/lib/cn";
+} from '@/components/animate-ui/primitives/animate/tabs';
+import { cn } from '@/lib/cn';
 
 type TabsProps = TabsPrimitiveProps;
 
 function Tabs({ className, ...props }: TabsProps) {
   return (
-    <TabsPrimitive className={cn("flex flex-col", className)} {...props} />
+    <TabsPrimitive className={cn('flex flex-col', className)} {...props} />
   );
 }
 
@@ -29,7 +29,7 @@ function TabsList({ className, ...props }: TabsListProps) {
     <TabsHighlightPrimitive className="absolute z-0 inset-0 border border-transparent rounded-md bg-background dark:border-input dark:bg-input/30 shadow-sm">
       <TabsListPrimitive
         className={cn(
-          "bg-muted text-muted-foreground inline-flex w-fit items-center justify-center rounded-lg p-[3px]",
+          'bg-muted text-muted-foreground inline-flex w-fit items-center justify-center rounded-lg p-[3px]',
           className
         )}
         {...props}
@@ -65,7 +65,7 @@ type TabsContentProps = TabsContentPrimitiveProps;
 function TabsContent({ className, ...props }: TabsContentProps) {
   return (
     <TabsContentPrimitive
-      className={cn("outline-none", className)}
+      className={cn('outline-none', className)}
       {...props}
     />
   );
