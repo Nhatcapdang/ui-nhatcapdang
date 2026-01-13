@@ -5,7 +5,6 @@ import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Spinner } from '@/components/ui/spinner';
-import { fetchFile } from '@/lib/fetch-file';
 
 type Props = {
   path?: string;
@@ -28,7 +27,14 @@ export const CodePreview = ({
     if (!codeContent && path) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsLoading(true);
-      fetchFile(`/src/${path}.tsx`)
+      fetch(`/api/fetch-file?filename=/src/${path}.tsx`)
+        .then(async response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          return data.content;
+        })
         .then(setCodeContent)
         .catch(error => {
           console.error('Failed to fetch file:', error);
