@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Tabs,
   TabsContent,
@@ -5,54 +7,36 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/animate-ui/components/animate/tabs';
-import { CodeBlock } from 'fumadocs-ui/components/codeblock';
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
 import { memo } from 'react';
 
 function Installation({ componentName }: { componentName: string }) {
-  const registryUrl = `https://nhatcapdang.com/r/${componentName}.json`;
+  const registryUrl = `https://ui.nhatcapdang.com/r/${componentName}.json`;
   return (
-    <Tabs itemID="installation">
-      <TabsList itemID="installation">
-        <TabsTrigger value="npm" itemID="npm">
-          npm
-        </TabsTrigger>
-        <TabsTrigger value="yarn" itemID="yarn">
-          yarn
-        </TabsTrigger>
-        <TabsTrigger value="pnpm" itemID="pnpm">
-          pnpm
-        </TabsTrigger>
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="npm">npm</TabsTrigger>
+        <TabsTrigger value="yarn">yarn</TabsTrigger>
+        <TabsTrigger value="pnpm">pnpm</TabsTrigger>
       </TabsList>
       <TabsContents className="border rounded-xl mt-1">
         <TabsContent
-          id="npm"
-          itemID="npm"
           value="npm"
           className="[&>figure]:my-0 [&>figure]:border-none"
         >
-          <CodeBlock lang="npm" className="ps-4">
-            npm install {registryUrl}
-          </CodeBlock>
+          <DynamicCodeBlock lang="bash" code={`npm install ${registryUrl}`} />
         </TabsContent>
         <TabsContent
-          id="yarn"
-          itemID="yarn"
           value="yarn"
           className="[&>figure]:my-0 [&>figure]:border-none"
         >
-          <CodeBlock lang="yarn" className="ps-4">
-            yarn add {registryUrl}
-          </CodeBlock>
+          <DynamicCodeBlock lang="bash" code={`yarn add ${registryUrl}`} />
         </TabsContent>
         <TabsContent
-          id="pnpm"
-          itemID="pnpm"
           value="pnpm"
           className="[&>figure]:my-0 [&>figure]:border-none"
         >
-          <CodeBlock lang="pnpm" className="ps-4">
-            pnpm add {registryUrl}
-          </CodeBlock>
+          <DynamicCodeBlock lang="bash" code={`pnpm add ${registryUrl}`} />
         </TabsContent>
       </TabsContents>
     </Tabs>
