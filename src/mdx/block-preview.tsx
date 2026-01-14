@@ -111,7 +111,7 @@ export const BlockPreview = ({ path, registry }: IBlockPreview) => {
           </TabsList>
           <TabsContents>
             <TabsContent value="preview">
-              <Preview path={path ? `${path}` : undefined} />
+              <Preview path={path ?? ''} />
             </TabsContent>
             <TabsContent value="code" className="p-4">
               <h4 className="mb-4 text-lg font-bold"> CLI Installation</h4>
