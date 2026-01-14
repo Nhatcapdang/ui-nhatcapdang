@@ -2,9 +2,10 @@
 
 import { CodeToHastOptionsCommon } from '@shikijs/types';
 import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useEffectEvent, useMemo, useState } from 'react';
 
 import { Spinner } from '@/components/ui/spinner';
+import { fetchFile } from '@/lib/fetch-file';
 
 type Props = {
   path?: string;
@@ -23,18 +24,10 @@ export const CodePreview = ({
   const [codeContent, setCodeContent] = useState(code);
   const [isLoading, setIsLoading] = useState(!!path && !code);
 
-  useEffect(() => {
+  const handleFetchFile = useEffectEvent(() => {
     if (!codeContent && path) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsLoading(true);
-      fetch(`/api/fetch-file?filename=/src/${path}.tsx`)
-        .then(async response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          return data.content;
-        })
+      fetchFile(`/src/${path}.tsx`)
         .then(setCodeContent)
         .catch(error => {
           console.error('Failed to fetch file:', error);
@@ -44,7 +37,11 @@ export const CodePreview = ({
           setIsLoading(false);
         });
     }
-  }, [path, codeContent]);
+  });
+
+  useEffect(() => {
+    handleFetchFile();
+  }, []);
 
   const filteredCode = useMemo(() => {
     if (!removeExtraProps) return codeContent;

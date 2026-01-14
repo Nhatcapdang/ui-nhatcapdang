@@ -1,8 +1,8 @@
 {
 	"version": "0.0.1",
 	"$schema": "https://ui.shadcn.com/schema/registry.json",
-	"name": "Nhatcapdang",
-	"homepage": "https://nhatcapdang.com",
+	"name": "nhatcapdang",
+	"homepage": "https://ui.nhatcapdang.com",
 	"items": [
 		{
 			"name": "marquee",
@@ -54,6 +54,22 @@
 					"path": "src/components/transition-panel.tsx",
 					"type": "registry:component",
 					"target": "src/nhatcapdang/transition-panel.tsx"
+				}
+			]
+		},
+		{
+			"name": "animated-number",
+			"type": "registry:component",
+			"title": "Animated Number",
+			"description": "A smooth animated number component that transitions between numeric values with customizable spring animations using Framer Motion.",
+			"dependencies": [
+				"motion"
+			],
+			"files": [
+				{
+					"path": "src/components/number/animated-number.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/animated-number.tsx"
 				}
 			]
 		}

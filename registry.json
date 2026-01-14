@@ -1,11 +1,7 @@
 {
 	"version": "0.0.1",
 	"$schema": "https://ui.shadcn.com/schema/registry.json",
-<<<<<<< Updated upstream
-	"name": "Nhatcapdang",
-=======
 	"name": "nhatcapdang",
->>>>>>> Stashed changes
 	"homepage": "https://ui.nhatcapdang.com",
 	"items": [
 		{

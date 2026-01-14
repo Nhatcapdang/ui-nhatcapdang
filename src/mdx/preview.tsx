@@ -10,8 +10,7 @@ import {
 import { cn } from '@/utils/cn';
 
 export type IBlockPreview = {
-  path?: string;
-  registry?: string;
+  path: string;
 };
 
 export const Preview = ({ path }: IBlockPreview) => {
@@ -64,7 +63,7 @@ export const Preview = ({ path }: IBlockPreview) => {
             style={{
               height,
             }}
-            src={path ? `/examples/${path}` : undefined}
+            src={`/examples/${path}`}
           />
         </ResizablePanel>
         <ResizableHandle
