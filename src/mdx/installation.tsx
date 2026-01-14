@@ -11,7 +11,7 @@ import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
 import { memo } from 'react';
 
 function Installation({ componentName }: { componentName: string }) {
-  const registryUrl = `https://ui.nhatcapdang.com/r/${componentName}.json`;
+  const registryUrl = `shadcn@latest add @nhatcapdang/${componentName}`;
   return (
     <Tabs>
       <TabsList>
@@ -24,19 +24,19 @@ function Installation({ componentName }: { componentName: string }) {
           value="npm"
           className="[&>figure]:my-0 [&>figure]:border-none"
         >
-          <DynamicCodeBlock lang="bash" code={`npm install ${registryUrl}`} />
+          <DynamicCodeBlock lang="bash" code={`npx ${registryUrl}`} />
         </TabsContent>
         <TabsContent
           value="yarn"
           className="[&>figure]:my-0 [&>figure]:border-none"
         >
-          <DynamicCodeBlock lang="bash" code={`yarn add ${registryUrl}`} />
+          <DynamicCodeBlock lang="bash" code={`yarn dlx ${registryUrl}`} />
         </TabsContent>
         <TabsContent
           value="pnpm"
           className="[&>figure]:my-0 [&>figure]:border-none"
         >
-          <DynamicCodeBlock lang="bash" code={`pnpm add ${registryUrl}`} />
+          <DynamicCodeBlock lang="bash" code={`pnpm dlx ${registryUrl}`} />
         </TabsContent>
       </TabsContents>
     </Tabs>
