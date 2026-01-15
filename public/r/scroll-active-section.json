@@ -1,0 +1,16 @@
+{
+	"name": "scroll-active-section",
+	"type": "registry:component",
+	"title": "Scroll Active Section",
+	"description": "A scroll-based component with content on the left and an active item display on the right. Perfect for showcasing features, timelines, or step-by-step processes.",
+	"dependencies": [
+		"motion"
+	],
+	"files": [
+		{
+			"path": "src/components/scroll-active-section.tsx",
+			"type": "registry:component",
+			"target": "src/nhatcapdang/scroll-active-section.tsx"
+		}
+	]
+}
