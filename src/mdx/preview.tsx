@@ -55,7 +55,7 @@ export const Preview = ({ path }: IBlockPreview) => {
             ref={iframeRef}
             onLoad={handleLoad}
             className={cn(
-              'h-full w-full transition-opacity duration-200',
+              'max-h-screen w-full transition-opacity duration-200',
               isLoading ? 'opacity-0' : 'opacity-100'
             )}
             title="Preview"
