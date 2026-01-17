@@ -1,0 +1,61 @@
+---
+title: Installation
+description: How to install dependencies and organize your app structure.
+---
+
+<Callout>
+    **Note:** Follows the same installation steps as <a href="https://ui.shadcn.com" target="_blank">shadcn/ui</a>
+</Callout>
+
+<Steps>
+    <Step>
+        ### Create project
+    </Step>
+    Run the `init` (with default options) command to create a new Next.js project or set up an existing one:
+
+```npm
+npx shadcn@latest init
+```
+    <Step>
+        ###  Add `@nhatcapdang` to your `components.json`
+    </Step>
+
+```json
+{
+    ...
+    "registries": {
+        /* [!code ++:1] */
+        "@nhatcapdang": "https://ui.nhatcapdang.com/r/{name}.json"
+    }
+}
+```
+
+    <Step>
+        ### That's it
+    </Step>
+    You’re ready to start adding components to your project
+
+```npm
+npx shadcn@latest add @nhatcapdang/animated-number
+```
+
+    The command above will add the `AnimatedNumber` component to your project. You can then import it using the following syntax:
+
+```tsx
+{/* [!code ++:1] */}
+import { AnimatedNumber } from "@/components/nhatcapdang/animated-number"
+
+export default function Home() {
+    return (
+       <AnimatedNumber
+        value={100}
+        springOptions={{
+          stiffness: 50,
+          damping: 20,
+        }}
+      />
+    )
+}
+```
+
+</Steps>
