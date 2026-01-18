@@ -72,6 +72,22 @@
 					"target": "src/nhatcapdang/animated-number.tsx"
 				}
 			]
+		},
+		{
+			"name": "scroll-active-section",
+			"type": "registry:component",
+			"title": "Scroll Active Section",
+			"description": "A powerful scroll-based component that displays content on the left side while showing an active item preview on the right. Perfect for showcasing features, timelines, or step-by-step processes.",
+			"dependencies": [
+				"motion"
+			],
+			"files": [
+				{
+					"path": "src/components/scroll/scroll-active-section.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/scroll-active-section.tsx"
+				}
+			]
 		}
 	]
 }
