@@ -27,7 +27,7 @@ export const CodePreview = ({
   const handleFetchFile = useEffectEvent(() => {
     if (!codeContent && path) {
       setIsLoading(true);
-      fetchFile(`/src/${path}.tsx`)
+      fetchFile(path)
         .then(setCodeContent)
         .catch(error => {
           console.error('Failed to fetch file:', error);

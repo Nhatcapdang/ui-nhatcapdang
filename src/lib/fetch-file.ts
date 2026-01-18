@@ -2,12 +2,8 @@ export const fetchFile = async (filename: string): Promise<string> => {
   // Check if we're in a browser environment
   if (typeof window !== 'undefined') {
     // Client-side: use fetch to call our API route
-    const cleanPath = filename
-      .replace(/^\/src\//, '') // Remove /src/ prefix
-      .replace(/\.(tsx?|jsx?)$/, ''); // Remove file extension
 
-    const pathSegments = cleanPath.split('/').filter(Boolean);
-    const url = `/fetch-component/${pathSegments.join('/')}`;
+    const url = `/fetch-component/${filename}`;
 
     try {
       const response = await fetch(url);
@@ -29,7 +25,7 @@ export const fetchFile = async (filename: string): Promise<string> => {
     const nodePath = await import('node:path');
 
     try {
-      const filePath = nodePath.join(process.cwd(), filename);
+      const filePath = nodePath.join(process.cwd(), `src/${filename}.tsx`);
       const content = await fs.readFile(filePath, 'utf8');
       return content;
     } catch (error) {
