@@ -6,7 +6,7 @@ const withMDX = createMDX();
 const config = {
   reactStrictMode: true,
   images: {
-    domains: ['cataas.com'],
+    remotePatterns: [{ hostname: 'cataas.com' }],
   },
 };
 

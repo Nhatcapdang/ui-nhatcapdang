@@ -22,12 +22,12 @@ export const CodePreview = ({
   lang = 'tsx',
 }: Props) => {
   const [codeContent, setCodeContent] = useState(code);
-  const [isLoading, setIsLoading] = useState(!!path && !code);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFetchFile = useEffectEvent(() => {
     if (!codeContent && path) {
       setIsLoading(true);
-      fetchFile(`/src/${path}.tsx`)
+      fetchFile(path)
         .then(setCodeContent)
         .catch(error => {
           console.error('Failed to fetch file:', error);
@@ -48,8 +48,16 @@ export const CodePreview = ({
     return codeContent?.replaceAll(/\s*\{\s*\.\.\.props\s*}\s*/g, '');
   }, [removeExtraProps, codeContent]);
 
-  if (isLoading || !filteredCode) {
+  if (isLoading || (!filteredCode && path)) {
     return <Spinner className="mx-auto my-10 size-5" />;
+  }
+
+  if (!filteredCode) {
+    return (
+      <div className="mx-auto my-10 text-center text-muted-foreground">
+        No code to display
+      </div>
+    );
   }
 
   return <DynamicCodeBlock lang={lang} code={filteredCode} />;
