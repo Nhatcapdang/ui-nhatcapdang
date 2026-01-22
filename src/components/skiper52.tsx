@@ -2,6 +2,7 @@
 import { cn } from '@/utils/cn';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { CSSProperties, useRef } from 'react';
+import ScrollEveal from './scroll-eveal';
 import { badgeVariants } from './ui/badge';
 
 export default function ScrollProgress() {
@@ -20,8 +21,14 @@ export default function ScrollProgress() {
     <div>
       <motion.div ref={ref}>
         <div className="h-screen w-screen" />
-        <div className="h-screen w-screen" />
-        <div className="h-screen w-screen" />
+        <div className="h-screen w-screen" ><ScrollEveal>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+        </ScrollEveal>
+        </div>
+        <div className="h-screen w-screen" ><ScrollEveal>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+        </ScrollEveal>
+        </div>
         <div className="h-screen w-screen" />
       </motion.div>
       <motion.div
@@ -33,15 +40,15 @@ export default function ScrollProgress() {
         <motion.span
           className={cn(
             badgeVariants({ variant: 'outline' }),
-            'rounded-none border-0 p-0 absolute right-6 -mt-[7px] top-(--progress) before:absolute before:top-0 before:left-0 before:w-full before:h-1'
+            'mr-0.5 rounded-none border-0 p-0 absolute right-6 -mt-[7px] top-(--progress) before:absolute before:top-0 before:left-0 before:w-full before:h-1'
           )}
         >
           {roundedScrollNumber}
         </motion.span>
-        {Array.from({ length: 50 }).map((_, index) => (
+        {Array.from({ length: 25 }).map((_, index) => (
           <motion.div
             key={index}
-            className="h-px w-full bg-muted-foreground/50"
+            className="h-px ml-auto w-3 bg-muted-foreground/50 cursor-pointer"
           />
         ))}
       </motion.div>
