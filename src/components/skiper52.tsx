@@ -1,6 +1,8 @@
 'use client';
-import { motion, useScroll, useSpring, useTransform } from 'motion/react';
-import { useRef } from 'react';
+import { cn } from '@/utils/cn';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { CSSProperties, useRef } from 'react';
+import { badgeVariants } from './ui/badge';
 
 export default function ScrollProgress() {
   const ref = useRef<HTMLDivElement>(null);
@@ -9,6 +11,10 @@ export default function ScrollProgress() {
     offset: ['start start', 'end end'],
   });
   const progress = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  const scrollNumber = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const roundedScrollNumber = useTransform(scrollNumber, value =>
+    Math.round(value)
+  );
 
   return (
     <div>
@@ -19,16 +25,25 @@ export default function ScrollProgress() {
         <div className="h-screen w-screen" />
       </motion.div>
       <motion.div
-        style={{ width: progress }}
-        className="bg-primary fixed top-0 left-0 right-0 h-2"
-      />
-      <motion.div
-        // style={{ width: progress }}
-        className=" fixed top-1/2 right-0 h-1/10 w-5 bg-red-400 flex flex-col gap-1"
+        style={{ '--progress': progress } as CSSProperties}
+        className={cn(
+          `fixed top-1/4 right-0 w-5 flex flex-col gap-1 before:h-px before:w-full before:bg-muted-foreground before:absolute before:top-(--progress) before:left-0`
+        )}
       >
-        <div className="h-0.5 bg-blue-400		" />
-        <div className="h-0.5 bg-blue-400" />
-        <div className="h-0.5 bg-blue-400" />
+        <motion.span
+          className={cn(
+            badgeVariants({ variant: 'outline' }),
+            'rounded-none border-0 p-0 absolute right-6 -mt-[7px] top-(--progress) before:absolute before:top-0 before:left-0 before:w-full before:h-1'
+          )}
+        >
+          {roundedScrollNumber}
+        </motion.span>
+        {Array.from({ length: 50 }).map((_, index) => (
+          <motion.div
+            key={index}
+            className="h-px w-full bg-muted-foreground/50"
+          />
+        ))}
       </motion.div>
     </div>
   );
