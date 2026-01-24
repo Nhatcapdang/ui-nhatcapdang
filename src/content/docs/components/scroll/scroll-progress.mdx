@@ -1,0 +1,53 @@
+---
+title: Scroll Progress
+description: A scroll progress indicator component that displays a visual progress bar and percentage as users scroll through content.
+---
+
+## Usage
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Preview">Preview</TabsTrigger>
+        <TabsTrigger value="Usage">Usage</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Preview">
+         <Preview path="demo/components/scroll-progress/scroll-progress-1"/>
+        </TabsContent>
+        <TabsContent value="Usage">
+          <CodePreview path="demo/components/scroll-progress/scroll-progress-1" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Installation
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Installation">CLI</TabsTrigger>
+        <TabsTrigger value="Manual">Manual</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Installation" className="p-4">
+         <Installation componentName="scroll-progress" />
+        </TabsContent>
+        <TabsContent value="Manual">
+          <CodePreview path="components/scroll/scroll-progress" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | The scrollable content to track progress |
+| `className` | `string` | - | Additional CSS classes for the scroll container |
+
+## Features
+
+- **Real-time progress tracking**: Displays current scroll position as a percentage (0-100)
+- **Visual progress indicator**: A horizontal line moves along a vertical track to show position
+- **Badge display**: Shows the current percentage in a styled badge
+- **Tick marks**: 25 evenly spaced tick marks provide visual reference points
+- **Smooth animations**: Powered by Motion for fluid progress updates

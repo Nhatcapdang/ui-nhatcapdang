@@ -1,15 +1,14 @@
 'use client';
+import { badgeVariants } from '@/components/ui/badge';
 import { cn } from '@/utils/cn';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { CSSProperties, useRef } from 'react';
-import ScrollEveal from './scroll-eveal';
-import { badgeVariants } from './ui/badge';
 
-export default function ScrollProgress() {
+export default function ScrollProgress({ children, className }: { children: React.ReactNode, className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
     offset: ['start start', 'end end'],
+    container: ref,
   });
   const progress = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
   const scrollNumber = useTransform(scrollYProgress, [0, 1], [0, 100]);
@@ -18,23 +17,14 @@ export default function ScrollProgress() {
   );
 
   return (
-    <div>
-      <motion.div ref={ref}>
-        <div className="h-screen w-screen" />
-        <div className="h-screen w-screen" ><ScrollEveal>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-        </ScrollEveal>
-        </div>
-        <div className="h-screen w-screen" ><ScrollEveal>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-        </ScrollEveal>
-        </div>
-        <div className="h-screen w-screen" />
+    <div className="relative w-fit pr-3">
+      <motion.div ref={ref} className={cn('no-scrollbar', className)}>
+        {children}
       </motion.div>
       <motion.div
         style={{ '--progress': progress } as CSSProperties}
         className={cn(
-          `fixed top-1/4 right-0 w-5 flex flex-col gap-1 before:h-px before:w-full before:bg-muted-foreground before:absolute before:top-(--progress) before:left-0`
+          `absolute top-1/3 -translate-y-1/2 right-0 w-5 flex flex-col gap-1 before:h-px before:w-full before:bg-muted-foreground before:absolute before:top-(--progress) before:left-0`
         )}
       >
         <motion.span
