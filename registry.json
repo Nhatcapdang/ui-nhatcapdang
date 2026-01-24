@@ -88,6 +88,41 @@
 					"target": "src/nhatcapdang/scroll-active-section.tsx"
 				}
 			]
+		},
+		{
+			"name": "scroll-eveal",
+			"type": "registry:component",
+			"title": "Scroll Reveal",
+			"description": "A reveal animation component that animates opacity and position when entering the viewport.",
+			"dependencies": [
+				"motion"
+			],
+			"files": [
+				{
+					"path": "src/components/scroll/scroll-eveal.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/scroll-eveal.tsx"
+				}
+			]
+		},
+		{
+			"name": "scroll-progress",
+			"type": "registry:component",
+			"title": "Scroll Progress",
+			"description": "A scroll progress indicator with a numeric badge and reveal animations.",
+			"dependencies": [
+				"motion"
+			],
+			"registryDependencies": [
+				"scroll-eveal"
+			],
+			"files": [
+				{
+					"path": "src/components/scroll/scroll-progress.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/scroll-progress.tsx"
+				}
+			]
 		}
 	]
 }

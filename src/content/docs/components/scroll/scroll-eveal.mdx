@@ -1,0 +1,52 @@
+---
+title: Scroll Eveal
+description: A scroll-based reveal animation component that elegantly reveals content with a slide and fade effect when the element enters the viewport.
+---
+
+## Usage
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Preview">Preview</TabsTrigger>
+        <TabsTrigger value="Usage">Usage</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Preview">
+         <Preview path="demo/components/scroll-eveal/scroll-eveal-1"/>
+        </TabsContent>
+        <TabsContent value="Usage">
+          <CodePreview path="demo/components/scroll-eveal/scroll-eveal-1" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Installation
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Installation">CLI</TabsTrigger>
+        <TabsTrigger value="Manual">Manual</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Installation" className="p-4">
+         <Installation componentName="scroll-eveal" />
+        </TabsContent>
+        <TabsContent value="Manual">
+          <CodePreview path="components/scroll/scroll-eveal" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | The content to reveal on scroll |
+
+## Features
+
+- **Fade and slide animation**: Content fades in while sliding up from below
+- **Overlay reveal effect**: A colored overlay slides across to reveal the content
+- **Viewport detection**: Uses `useInView` hook to trigger animation when element is 50% visible
+- **One-time animation**: Animation only plays once when first entering viewport
+- **Customizable timing**: Built with Motion for smooth, professional animations

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-eveal",
+  "type": "registry:component",
+  "title": "Scroll Reveal",
+  "description": "A reveal animation component that animates opacity and position when entering the viewport.",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    {
+      "path": "src/components/scroll/scroll-eveal.tsx",
+      "content": "'use client';\n\nimport { motion, useInView } from \"motion/react\";\nimport { useRef } from \"react\";\n\nexport default function ScrollEveal({ children }: { children: React.ReactNode }) {\n    const ref = useRef(null);\n    const isInView = useInView(ref, { once: true, amount: 0.5, margin: '0px 0px -10% 0px' });\n\n    return <div ref={ref} className=\"relative overflow-hidden\">\n        <motion.div\n            variants={{\n                hidden: { opacity: 0, y: 75 },\n                visible: { opacity: 1, y: 0 },\n            }}\n            initial=\"hidden\"\n            animate={isInView ? \"visible\" : \"hidden\"}\n            transition={{ duration: 0.5, delay: 0.25 }}\n        >\n            {children}\n        </motion.div>\n        <motion.div\n            variants={{\n                hidden: { left: 0 },\n                visible: { left: '100%' },\n            }}\n            initial=\"hidden\"\n            animate={isInView ? \"visible\" : \"hidden\"}\n            transition={{ duration: 0.5, ease: 'easeIn' }}\n            className=\"absolute top-0 left-0 w-full h-full bg-primary\"\n        />\n    </div>\n}",
+      "type": "registry:component",
+      "target": "src/nhatcapdang/scroll-eveal.tsx"
+    }
+  ]
+}

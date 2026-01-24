@@ -1,0 +1,47 @@
+'use client';
+import { badgeVariants } from '@/components/ui/badge';
+import { cn } from '@/utils/cn';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { CSSProperties, useRef } from 'react';
+
+export default function ScrollProgress({ children, className }: { children: React.ReactNode, className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    offset: ['start start', 'end end'],
+    container: ref,
+  });
+  const progress = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  const scrollNumber = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const roundedScrollNumber = useTransform(scrollNumber, value =>
+    Math.round(value)
+  );
+
+  return (
+    <div className="relative w-fit pr-3">
+      <motion.div ref={ref} className={cn('no-scrollbar', className)}>
+        {children}
+      </motion.div>
+      <motion.div
+        style={{ '--progress': progress } as CSSProperties}
+        className={cn(
+          `absolute top-1/3 -translate-y-1/2 right-0 w-5 flex flex-col gap-1 before:h-px before:w-full before:bg-muted-foreground before:absolute before:top-(--progress) before:left-0`
+        )}
+      >
+        <motion.span
+          className={cn(
+            badgeVariants({ variant: 'outline' }),
+            'mr-0.5 rounded-none border-0 p-0 absolute right-6 -mt-[7px] top-(--progress) before:absolute before:top-0 before:left-0 before:w-full before:h-1'
+          )}
+        >
+          {roundedScrollNumber}
+        </motion.span>
+        {Array.from({ length: 25 }).map((_, index) => (
+          <motion.div
+            key={index}
+            className="h-px ml-auto w-3 bg-muted-foreground/50 cursor-pointer"
+          />
+        ))}
+      </motion.div>
+    </div>
+  );
+}

@@ -1,0 +1,69 @@
+---
+description: Guidelines for registering components to the shadcn/ui-style registry
+globs: registry.json, public/r/*.json, src/components/**/*.tsx
+alwaysApply: false
+---
+
+# Registering Components to Registry
+
+When adding components to the registry, follow these steps:
+
+## 1. Prepare Component Code
+
+- Use path aliases (`@/utils/cn`, `@/components/ui/badge`) instead of relative paths
+- Ensure all dependencies are properly imported
+
+## 2. Update Main Registry (`registry.json`)
+
+Add entry with required fields:
+
+```json
+{
+  "name": "component-name",
+  "type": "registry:component",
+  "title": "Component Title",
+  "description": "Brief description of the component.",
+  "dependencies": ["motion"],
+  "registryDependencies": ["other-registry-component"],
+  "files": [
+    {
+      "path": "src/components/component-name.tsx",
+      "type": "registry:component",
+      "target": "src/nhatcapdang/component-name.tsx"
+    }
+  ]
+}
+```
+
+## 3. Create Public Registry File (`public/r/[name].json`)
+
+Include full component content:
+
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "component-name",
+  "type": "registry:component",
+  "title": "Component Title",
+  "description": "Description here",
+  "dependencies": ["motion"],
+  "files": [
+    {
+      "path": "src/components/component-name.tsx",
+      "content": "// Full file content as escaped string",
+      "type": "registry:component",
+      "target": "src/nhatcapdang/component-name.tsx"
+    }
+  ]
+}
+```
+
+## 4. Sync Public Registry
+
+Copy updated `registry.json` content to `public/r/registry.json`.
+
+## Key Notes
+
+- Use `registryDependencies` for components that depend on other registry components
+- Include `dependencies` for npm packages (e.g., `motion`)
+- CSS-only styles use `cssVars` and `css` fields
