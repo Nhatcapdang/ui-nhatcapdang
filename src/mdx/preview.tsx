@@ -2,12 +2,14 @@
 
 import { useRef, useState } from 'react';
 
+import { Button } from '@/components/ui/button';
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
 import { cn } from '@/utils/cn';
+import { RotateCcwIcon } from 'lucide-react';
 
 export type IBlockPreview = {
   path: string;
@@ -36,6 +38,14 @@ export const Preview = ({ path }: IBlockPreview) => {
     }
   };
 
+  const handleRefresh = () => {
+    if (iframeRef.current) {
+      iframeRef.current.src = iframeRef.current.src ?? '';
+    }
+    setIsLoading(true);
+    handleLoad();
+  };
+
   return (
     <div className="relative">
       {isLoading && (
@@ -50,7 +60,8 @@ export const Preview = ({ path }: IBlockPreview) => {
           className="scale-125 hover:scale-150 transition-all duration-300"
         />
         <ResizablePanel />
-        <ResizablePanel defaultSize={'100%'} minSize={350}>
+        <ResizablePanel defaultSize="100%" minSize={350}>
+          <Button variant="ghost" className='absolute top-2 right-2 z-10' size='icon' onClick={handleRefresh}><RotateCcwIcon /></Button>
           <iframe
             ref={iframeRef}
             onLoad={handleLoad}

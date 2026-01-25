@@ -12,6 +12,7 @@ import {
   type ReactNode,
 } from "react";
 import { cn } from "../lib/cn";
+// eslint-disable-next-line no-restricted-imports
 import * as Unstyled from "./ui/tabs";
 
 type CollectionKey = string | symbol;

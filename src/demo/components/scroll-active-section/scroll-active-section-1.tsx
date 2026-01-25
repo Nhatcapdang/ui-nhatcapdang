@@ -32,7 +32,7 @@ const DEMO: ScrollItem[] = [
       </div>
     ),
     right: (
-      <div className="rounded-lg overflow-hidden h-[500px] relative w-full bg-amber-400"></div>
+      <div className="rounded-lg overflow-hidden h-[500px] relative w-full bg-amber-400" />
     ),
   },
   {
@@ -49,7 +49,7 @@ const DEMO: ScrollItem[] = [
       </div>
     ),
     right: (
-      <div className="rounded-lg overflow-hidden h-[500px] relative w-full bg-red-400"></div>
+      <div className="rounded-lg overflow-hidden h-[500px] relative w-full bg-red-400" />
     ),
   },
   {
@@ -63,7 +63,7 @@ const DEMO: ScrollItem[] = [
       </div>
     ),
     right: (
-      <div className="rounded-lg overflow-hidden h-[500px] relative w-full bg-blue-400"></div>
+      <div className="rounded-lg overflow-hidden h-[500px] relative w-full bg-blue-400" />
     ),
   },
   {
@@ -79,7 +79,7 @@ const DEMO: ScrollItem[] = [
       </div>
     ),
     right: (
-      <div className="rounded-lg overflow-hidden h-[500px] relative w-full bg-green-400"></div>
+      <div className="rounded-lg overflow-hidden h-[500px] relative w-full bg-green-400" />
     ),
   },
   {
@@ -95,7 +95,7 @@ const DEMO: ScrollItem[] = [
       </div>
     ),
     right: (
-      <div className="rounded-lg h-[500px] relative w-full bg-purple-400"></div>
+      <div className="rounded-lg h-[500px] relative w-full bg-purple-400" />
     ),
   },
 ];

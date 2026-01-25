@@ -7,6 +7,14 @@ const eslintConfig = defineConfig([
     files: ['src/**/*.tsx'],
     ignores: ['**/components/animate-ui/**'],
     rules: {
+      'react/jsx-curly-brace-presence': [
+        'error',
+        { props: 'never', children: 'never' },
+      ],
+      'react/self-closing-comp': [
+        'error',
+        { component: true, html: true },
+      ],
       'no-restricted-imports': [
         'error',
         {
