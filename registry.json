@@ -123,6 +123,22 @@
 					"target": "src/nhatcapdang/scroll-progress.tsx"
 				}
 			]
+		},
+		{
+			"name": "scroll-opposite",
+			"type": "registry:component",
+			"title": "Scroll Opposite",
+			"description": "A scroll-driven animation component that moves two columns in opposite directions as you scroll, creating a dynamic visual effect.",
+			"dependencies": [
+				"motion"
+			],
+			"files": [
+				{
+					"path": "src/components/scroll/scroll-opposite.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/scroll-opposite.tsx"
+				}
+			]
 		}
 	]
 }
