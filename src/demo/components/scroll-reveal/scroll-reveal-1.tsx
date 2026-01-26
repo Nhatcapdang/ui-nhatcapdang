@@ -1,6 +1,6 @@
-import ScrollEveal from '@/components/scroll/scroll-eveal'
+import ScrollEveal from '@/components/scroll/scroll-reveal'
 
-function ScrollEvealDemo() {
+function ScrollRevealDemo() {
 	return (
 		<div className="h-[600px] overflow-y-auto space-y-8 p-8">
 			<div className="h-[200px] flex items-center justify-center">
@@ -43,4 +43,4 @@ function ScrollEvealDemo() {
 	)
 }
 
-export default ScrollEvealDemo
+export default ScrollRevealDemo

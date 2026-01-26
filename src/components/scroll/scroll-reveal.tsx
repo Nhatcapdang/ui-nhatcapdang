@@ -3,7 +3,7 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
-export default function ScrollEveal({ children }: { children: React.ReactNode }) {
+export default function ScrollReveal({ children }: { children: React.ReactNode }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.5, margin: '0px 0px -10% 0px' });
 
