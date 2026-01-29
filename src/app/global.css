@@ -261,4 +261,8 @@ html body[data-scroll-locked] {
     scrollbar-width: none;
     /* Firefox */
   }
+
+  .liquid-glass {
+    @apply bg-white/10 backdrop-blur-sm border border-white/10;
+  }
 }

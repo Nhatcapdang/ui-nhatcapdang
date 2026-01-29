@@ -139,6 +139,22 @@
 					"target": "src/nhatcapdang/scroll-opposite.tsx"
 				}
 			]
+		},
+		{
+			"name": "parallax-scroll",
+			"type": "registry:component",
+			"title": "Parallax Scroll",
+			"description": "A parallax scroll effect component that creates a smooth sliding animation with text overlays as the content scrolls into view.",
+			"dependencies": [
+				"motion"
+			],
+			"files": [
+				{
+					"path": "src/components/scroll/parallax-scroll.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/parallax-scroll.tsx"
+				}
+			]
 		}
 	]
 }
