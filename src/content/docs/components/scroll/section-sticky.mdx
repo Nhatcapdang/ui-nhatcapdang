@@ -1,0 +1,52 @@
+---
+title: Section Sticky
+description: A sticky section component that creates a layered scroll effect where sections stack on top of each other with scaling animations.
+---
+
+## Usage
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Preview">Preview</TabsTrigger>
+        <TabsTrigger value="Usage">Usage</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Preview">
+         <Preview path="demo/components/scroll/section-sticky"/>
+        </TabsContent>
+        <TabsContent value="Usage">
+          <CodePreview path="demo/components/scroll/section-sticky" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Installation
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Installation">CLI</TabsTrigger>
+        <TabsTrigger value="Manual">Manual</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Installation" className="p-4">
+         <Installation componentName="section-sticky" />
+        </TabsContent>
+        <TabsContent value="Manual">
+          <CodePreview path="components/scroll/section-sticky" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode[]` | - | Array of React nodes to be displayed as sticky sections |
+
+## Features
+
+- **Layered Stacking**: Each section sticks to the top while the next section slides over it
+- **Scale Animation**: Sections scale from 0.8 to 1.0 as they come into view
+- **Smooth Transitions**: Uses Framer Motion for buttery smooth animations
+- **Responsive Design**: Works seamlessly across different screen sizes
+- **Customizable Positioning**: Each section has a slight vertical offset for visual depth
