@@ -90,7 +90,7 @@
 			]
 		},
 		{
-			"name": "scroll-eveal",
+			"name": "scroll-reveal",
 			"type": "registry:component",
 			"title": "Scroll Reveal",
 			"description": "A reveal animation component that animates opacity and position when entering the viewport.",
@@ -99,9 +99,9 @@
 			],
 			"files": [
 				{
-					"path": "src/components/scroll/scroll-eveal.tsx",
+					"path": "src/components/scroll/scroll-reveal.tsx",
 					"type": "registry:component",
-					"target": "src/nhatcapdang/scroll-eveal.tsx"
+					"target": "src/nhatcapdang/scroll-reveal.tsx"
 				}
 			]
 		},
@@ -114,7 +114,7 @@
 				"motion"
 			],
 			"registryDependencies": [
-				"scroll-eveal"
+				"scroll-reveal"
 			],
 			"files": [
 				{
@@ -137,6 +137,38 @@
 					"path": "src/components/scroll/scroll-opposite.tsx",
 					"type": "registry:component",
 					"target": "src/nhatcapdang/scroll-opposite.tsx"
+				}
+			]
+		},
+		{
+			"name": "parallax-scroll-1",
+			"type": "registry:component",
+			"title": "Parallax Scroll-1",
+			"description": "A parallax scroll effect component that creates a smooth sliding animation with text overlays as the content scrolls into view.",
+			"dependencies": [
+				"motion"
+			],
+			"files": [
+				{
+					"path": "src/components/scroll/parallax-scroll-1.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/parallax-scroll-1.tsx"
+				}
+			]
+		},
+		{
+			"name": "section-sticky",
+			"type": "registry:component",
+			"title": "Section Sticky",
+			"description": "A sticky section component that creates a layered scroll effect where sections stack on top of each other with scaling animations.",
+			"dependencies": [
+				"motion"
+			],
+			"files": [
+				{
+					"path": "src/components/scroll/section-sticky.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/section-sticky.tsx"
 				}
 			]
 		}

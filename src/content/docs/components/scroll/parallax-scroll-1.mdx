@@ -1,0 +1,53 @@
+---
+title: Parallax Scroll 1
+description: A parallax scroll effect component that creates a smooth sliding animation with text overlays at the top and bottom as the content scrolls into view.
+---
+
+## Usage
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Preview">Preview</TabsTrigger>
+        <TabsTrigger value="Usage">Usage</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Preview">
+         <Preview path="demo/components/parallax-scroll/parallax-scroll-1"/>
+        </TabsContent>
+        <TabsContent value="Usage">
+          <CodePreview path="demo/components/parallax-scroll/parallax-scroll-1" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Installation
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Installation">CLI</TabsTrigger>
+        <TabsTrigger value="Manual">Manual</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Installation" className="p-4">
+         <Installation componentName="parallax-scroll-1" />
+        </TabsContent>
+        <TabsContent value="Manual">
+          <CodePreview path="components/scroll/parallax-scroll-1" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | The content to display with parallax effect |
+| `offset` | `['start center', 'center start']` \| `['center', 'center']` | `['center', 'center']` | Scroll offset for triggering the animation |
+
+## Features
+
+- **Smooth parallax effect**: Content slides up with spring physics as you scroll
+- **Text overlays**: Bold text at top and bottom creates a layered visual effect
+- **Spring animation**: Uses configurable spring stiffness, damping, and mass for natural motion
+- **Scroll-linked**: Animation progress tied to scroll position
+- **Customizable offset**: Control when the parallax effect starts and ends

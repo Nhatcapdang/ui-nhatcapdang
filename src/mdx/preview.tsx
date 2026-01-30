@@ -9,7 +9,7 @@ import {
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
 import { cn } from '@/utils/cn';
-import { RotateCcwIcon } from 'lucide-react';
+import { Expand, RotateCcwIcon } from 'lucide-react';
 
 export type IBlockPreview = {
   path: string;
@@ -30,7 +30,7 @@ export const Preview = ({ path }: IBlockPreview) => {
       } catch (error) {
         console.error(
           'Cannot access iframe content due to cross-origin restrictions:',
-          error
+          error,
         );
       } finally {
         setIsLoading(false);
@@ -44,6 +44,10 @@ export const Preview = ({ path }: IBlockPreview) => {
     }
     setIsLoading(true);
     handleLoad();
+  };
+
+  const handleExpand = () => {
+    window.open(`/examples/${path}`, '_blank');
   };
 
   return (
@@ -61,13 +65,21 @@ export const Preview = ({ path }: IBlockPreview) => {
         />
         <ResizablePanel />
         <ResizablePanel defaultSize="100%" minSize={350}>
-          <Button variant="ghost" className='absolute top-2 right-2 z-10' size='icon' onClick={handleRefresh}><RotateCcwIcon /></Button>
+          <div className="absolute top-2 right-2 z-20 flex gap-2">
+            <Button variant="ghost" size="icon" onClick={handleExpand}>
+              <Expand />
+            </Button>
+            <Button variant="ghost" size="icon" onClick={handleRefresh}>
+              <RotateCcwIcon />
+            </Button>
+          </div>
+
           <iframe
             ref={iframeRef}
             onLoad={handleLoad}
             className={cn(
               'max-h-screen w-full transition-opacity duration-200',
-              isLoading ? 'opacity-0' : 'opacity-100'
+              isLoading ? 'opacity-0' : 'opacity-100',
             )}
             title="Preview"
             aria-label="Preview"
