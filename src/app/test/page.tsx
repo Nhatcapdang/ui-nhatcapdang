@@ -1,5 +1,6 @@
 import { default as ParallaxScroll1 } from '@/components/scroll/parallax-scroll-1';
 import ParallaxScroll2 from '@/components/scroll/parallax-scroll-2';
+import ParallaxScroll3 from '@/components/scroll/parallax-scroll-3';
 import SectionSticky from '@/components/scroll/section-sticky';
 import Link from 'next/link';
 
@@ -7,6 +8,7 @@ export default function TestPage() {
   return (
     <div>
       <div className="h-screen" />
+      <ParallaxScroll3 />
       <SectionSticky>
         <Link
           href="https://go.shadcn.io/nhatcapdang"

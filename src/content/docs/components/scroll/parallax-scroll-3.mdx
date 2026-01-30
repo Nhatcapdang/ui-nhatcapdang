@@ -1,0 +1,57 @@
+---
+title: Parallax Scroll 3
+description: A multi-column parallax gallery component that creates smooth scrolling effects with different speeds for each column, enhanced with Lenis smooth scrolling.
+---
+
+## Usage
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Preview">Preview</TabsTrigger>
+        <TabsTrigger value="Usage">Usage</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Preview">
+         <Preview path="demo/components/parallax-scroll-3/parallax-scroll-3-1"/>
+        </TabsContent>
+        <TabsContent value="Usage">
+          <CodePreview path="demo/components/parallax-scroll-3/parallax-scroll-3-1" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Installation
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Installation">CLI</TabsTrigger>
+        <TabsTrigger value="Manual">Manual</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Installation" className="p-4">
+         <Installation componentName="parallax-scroll-3" />
+        </TabsContent>
+        <TabsContent value="Manual">
+          <CodePreview path="components/scroll/parallax-scroll-3" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Features
+
+- **Multi-column Layout**: Four columns with different parallax speeds
+- **Lenis Smooth Scrolling**: Enhanced smooth scrolling experience
+- **Responsive Design**: Adapts to different screen sizes with minimum column width
+- **Dynamic Heights**: Each column has different starting positions and scroll speeds
+- **Image Gallery**: Perfect for showcasing image collections with parallax effect
+- **Performance Optimized**: Uses Framer Motion's useTransform for smooth animations
+
+## Technical Details
+
+The component uses different transform values for each column:
+- **Column 1**: 2x scroll speed
+- **Column 2**: 3.3x scroll speed  
+- **Column 3**: 1.25x scroll speed
+- **Column 4**: 3x scroll speed
+
+Each column also has different vertical starting positions to create a staggered effect.

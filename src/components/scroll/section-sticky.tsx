@@ -1,5 +1,11 @@
 'use client';
-import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
+import {
+  motion,
+  MotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import { useRef } from 'react';
 
 export default function SectionSticky({
@@ -39,10 +45,29 @@ const Section = ({
     [0.8, 1],
   );
 
+  const rotate = useTransform(
+    scrollYProgress,
+    [index * 0.2, (index + 1) * 0.2],
+    [4, 0],
+  );
+  const rotateSpring = useSpring(rotate, {
+    mass: 3,
+    stiffness: 200,
+    damping: 50,
+  });
+  const scaleSpring = useSpring(scale, {
+    mass: 3,
+    stiffness: 200,
+    damping: 50,
+  });
   return (
     <motion.div
       className="h-screen sticky top-0 "
-      style={{ scale, top: `calc(-5vh + ${index * 40 + 50}px)` }}
+      style={{
+        scale: scaleSpring,
+        rotate: rotateSpring,
+        top: `calc(-5vh + ${index * 40 + 50}px)`,
+      }}
     >
       {children}
     </motion.div>
