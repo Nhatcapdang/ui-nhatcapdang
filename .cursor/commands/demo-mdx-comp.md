@@ -16,10 +16,9 @@ Create documentation and demo files for components.
    - Installation section with CLI/Manual tabs
    - Props table
    - Features list (optional)
-5. Create demo file at `src/demo/components/{component-name}/{component-name}-1.tsx` with:
+5. Create demo file at `src/demo/components/{component-name}/{component-name}.tsx` with:
    - Interactive example showcasing component features
    - Clear visual demonstration
-6. Fix any linter errors (e.g., use `bg-linear-to-r` instead of `bg-gradient-to-r`)
 
 ## MDX Template
 
@@ -38,10 +37,10 @@ description: Brief description of the component's purpose.
       </TabsList>
       <TabsContents className="border rounded-xl mt-1">
         <TabsContent value="Preview">
-         <Preview path="demo/components/{component-name}/{component-name}-1"/>
+         <Preview path="demo/components/{component-name}/{component-name}"/>
         </TabsContent>
         <TabsContent value="Usage">
-          <CodePreview path="demo/components/{component-name}/{component-name}-1" />
+          <CodePreview path="demo/components/{component-name}/{component-name}" />
         </TabsContent>
       </TabsContents>
     </Tabs>
@@ -58,7 +57,7 @@ description: Brief description of the component's purpose.
          <Installation componentName="{component-name}" />
         </TabsContent>
         <TabsContent value="Manual">
-          <CodePreview path="components/{category}/{component-name}" />
+          <CodePreview path="demo/components/{category}/{component-name}" />
         </TabsContent>
       </TabsContents>
     </Tabs>

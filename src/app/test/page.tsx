@@ -2,14 +2,20 @@ import { default as ParallaxScroll1 } from '@/components/scroll/parallax-scroll-
 import ParallaxScroll2 from '@/components/scroll/parallax-scroll-2';
 import ParallaxScroll3 from '@/components/scroll/parallax-scroll-3';
 import SectionSticky from '@/components/scroll/section-sticky';
+import StickyFooter from '@/demo/blocks/footer/sticky-footer';
 import Link from 'next/link';
 
 export default function TestPage() {
   return (
     <div>
       <div className="h-screen" />
-      <ParallaxScroll3 />
-      <SectionSticky>
+      <div className="h-screen bg-amber-400">
+        <div className="h-full bg-blue-200 p-4 text-center items-end flex">
+          <h1>Lorem ipsum dolor sit amet</h1>
+        </div>
+      </div>
+      {/* <ParallaxScroll3 /> */}
+      {/* <SectionSticky>
         <Link
           href="https://go.shadcn.io/nhatcapdang"
           className="block w-full h-full rounded-2xl shadow-xl"
@@ -66,14 +72,8 @@ export default function TestPage() {
             scrolling="no"
           />
         </Link>
-      </SectionSticky>
-      <ParallaxScroll2 />
-      <ParallaxScroll1>
-        <div className="h-full bg-blue-200 p-4">
-          <h1>Lorem ipsum dolor sit amet</h1>
-        </div>
-      </ParallaxScroll1>
-      <div className="h-screen " />
+      </SectionSticky> */}
+      <StickyFooter />
     </div>
   );
 }
