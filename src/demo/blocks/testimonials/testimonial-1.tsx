@@ -156,7 +156,7 @@ const Testimonial = React.memo(() => {
   return (
     <section
       id="testimonials-section"
-      className="relative overflow-hidden h-screen flex items-center justify-center"
+      className="relative overflow-hidden h-[150vh] flex items-center justify-center"
       aria-labelledby="testimonials-heading"
     >
       <div className=" relative ">

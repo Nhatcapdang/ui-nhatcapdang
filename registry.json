@@ -171,6 +171,19 @@
 					"target": "src/nhatcapdang/section-sticky.tsx"
 				}
 			]
+		},
+		{
+			"name": "sticky-footer",
+			"type": "registry:block",
+			"title": "Sticky Footer",
+			"description": "A sticky footer component that creates a sticky footer effect. As users scroll, the footer sticks to the bottom of the page.",
+			"files": [
+				{
+					"path": "src/demo/blocks/footer/sticky-footer.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/sticky-footer.tsx"
+				}
+			]
 		}
 	]
 }
