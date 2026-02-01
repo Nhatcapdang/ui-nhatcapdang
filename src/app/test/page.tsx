@@ -2,6 +2,7 @@ import { default as ParallaxScroll1 } from '@/components/scroll/parallax-scroll-
 import ParallaxScroll2 from '@/components/scroll/parallax-scroll-2';
 import ParallaxScroll3 from '@/components/scroll/parallax-scroll-3';
 import SectionSticky from '@/components/scroll/section-sticky';
+import Test from '@/components/test';
 import StickyFooter from '@/demo/blocks/footer/sticky-footer';
 import Link from 'next/link';
 
@@ -14,6 +15,7 @@ export default function TestPage() {
           <h1>Lorem ipsum dolor sit amet</h1>
         </div>
       </div>
+      <Test />
       {/* <ParallaxScroll3 /> */}
       {/* <SectionSticky>
         <Link
