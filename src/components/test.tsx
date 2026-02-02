@@ -1,19 +1,27 @@
 'use client';
+import Lenis from 'lenis';
 
-import { cn } from '@/lib/cn';
+import { cn } from '@/utils/cn';
 import {
   MotionValue,
   motion,
   useMotionValueEvent,
   useScroll,
-  useSpring,
   useTransform,
 } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const TOTAL_ITEMS = 10;
-
-export default function Test() {
+export default function Showcase({
+  data,
+  className,
+}: {
+  data: {
+    title: React.ReactNode | string;
+    content: React.ReactNode;
+  }[];
+  className?: string;
+}) {
+  const totalItems = data.length;
   const ref = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(1);
 
@@ -23,66 +31,69 @@ export default function Test() {
   });
 
   const top = useTransform(scrollYProgress, [0, 1], ['5%', '95%']);
-  const topSpring = useSpring(top, {
-    mass: 1,
-    stiffness: 500,
-    damping: 50,
-  });
-  const margin = useTransform(scrollYProgress, [0, 1], ['0', '200px']);
-  const marginSpring = useSpring(margin, {
-    mass: 1,
-    stiffness: 500,
-    damping: 50,
-  });
+
   useMotionValueEvent(scrollYProgress, 'change', latest => {
-    const index = Math.min(Math.floor(latest * TOTAL_ITEMS) + 1, TOTAL_ITEMS);
+    const index = Math.min(Math.floor(latest * totalItems) + 1, totalItems);
     setActiveIndex(index);
   });
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+  }, []);
 
   return (
-    <div>
-      <div ref={ref} className="grid grid-cols-3">
-        <div className="col-span-1 relative">
-          <motion.div className="absolute" style={{ top: topSpring }}>
-            <h1 className="text-9xl font-bold">
-              {activeIndex < 10 ? <span>0</span> : ''}
-              {activeIndex}
-              <span className="text-4xl">/{TOTAL_ITEMS}</span>
-            </h1>
-          </motion.div>
+    <div data-slot="showcase" className={cn(className)}>
+      <div ref={ref} className="relative">
+        <div className="flex flex-col gap-2 text-right absolute w-full h-full max-w-max right-0">
+          <div
+            data-slot="titles"
+            className="sticky top-0 z-20 text-xl lg:text-4xl font-bold pr-4"
+          >
+            {data.map((item, index) => (
+              <Item
+                key={index}
+                scrollYProgress={scrollYProgress}
+                index={index}
+                title={item.title}
+                totalItems={totalItems}
+              />
+            ))}
+          </div>
         </div>
-        <div className="col-span-1 flex flex-col gap-2 py-[500px]">
-          {Array.from({ length: TOTAL_ITEMS }).map((_, index) => (
+
+        <motion.div
+          data-slot="counter"
+          style={{ top }}
+          className="sticky top-0 z-20 md:absolute pl-4"
+        >
+          <h1 className="md:text-9xl text-6xl font-bold">
+            {activeIndex < 10 ? <span>0</span> : ''}
+            {activeIndex}
+            <span className="text-2xl md:text-4xl">/{totalItems}</span>
+          </h1>
+        </motion.div>
+
+        <div
+          data-slot="content"
+          className="flex flex-col gap-2  md:py-[200px] pb-[100px]  z-10 max-w-2xl m-auto"
+        >
+          {data.map((item, index) => (
             <div
               key={index}
-              className={`h-[400px] w-full transition-colors ${
-                activeIndex === index + 1 ? 'bg-blue-500' : 'bg-red-500'
+              className={`transition-all duration-300 ${
+                activeIndex === index + 1
+                  ? 'brightness-100 saturate-100'
+                  : 'brightness-50 saturate-0'
               }`}
             >
-              {index + 1}
+              {item.content}
             </div>
-          ))}
-        </div>
-        <div className="col-span-1 flex flex-col gap-2  text-right  h-screen sticky top-0">
-          {/* {Array.from({ length: TOTAL_ITEMS }).map((_, index) => (
-            <motion.h1
-              key={index}
-              style={{
-                marginTop: activeIndex === index + 1 ? marginSpring : '0',
-                marginBottom: activeIndex === index + 1 ? marginSpring : '0',
-              }}
-              className={cn('w-full transition-colors text-4xl font-bold')}
-            >
-              {index + 1}
-            </motion.h1>
-          ))} */}
-          {Array.from({ length: TOTAL_ITEMS }).map((_, index) => (
-            <Item
-              key={index}
-              scrollYProgress={scrollYProgress}
-              index={index}
-              activeIndex={activeIndex}
-            />
           ))}
         </div>
       </div>
@@ -93,22 +104,28 @@ export default function Test() {
 const Item = ({
   scrollYProgress,
   index,
-  activeIndex,
+  title,
+  totalItems,
 }: {
   scrollYProgress: MotionValue<number>;
   index: number;
-  activeIndex: number;
+  title: React.ReactNode | string;
+  totalItems: number;
 }) => {
-  const startProgress = index / TOTAL_ITEMS;
-  const endProgress = (index + 1) / TOTAL_ITEMS;
-  const y = useTransform(
+  const startProgress = index / totalItems;
+  const endProgress = (index + 1) / totalItems;
+
+  const initialOffset = index * 10 + 600;
+
+  const translateY = useTransform(
     scrollYProgress,
     [startProgress, endProgress],
-    [index * 100, (index + 1) * 100]
+    [initialOffset, 50]
   );
+
   return (
-    <motion.div className=" w-full transition-colors " style={{ y }}>
-      {index + 1}
-    </motion.div>
+    <motion.h1 data-slot="title" style={{ translateY }}>
+      {title}
+    </motion.h1>
   );
 };

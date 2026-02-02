@@ -6,7 +6,7 @@ const withMDX = createMDX();
 const config = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [{ hostname: 'cataas.com' }],
+    remotePatterns: [{ hostname: 'cataas.com' }, { hostname: 'picsum.photos' }],
   },
 };
 
