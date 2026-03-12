@@ -1,0 +1,76 @@
+---
+title: Scrollspy
+description: A lightweight scrollspy container that syncs active anchors with section positions and URL hash updates.
+---
+
+## Usage
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Preview">Preview</TabsTrigger>
+        <TabsTrigger value="Usage">Usage</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Preview">
+         <Preview path="demo/components/scrollspy/scrollspy-1"/>
+        </TabsContent>
+        <TabsContent value="Usage">
+          <CodePreview path="demo/components/scrollspy/scrollspy-1" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Horizontal Usage
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Preview">Preview</TabsTrigger>
+        <TabsTrigger value="Usage">Usage</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Preview">
+         <Preview path="demo/components/scrollspy/scrollspy-horizontal"/>
+        </TabsContent>
+        <TabsContent value="Usage">
+          <CodePreview path="demo/components/scrollspy/scrollspy-horizontal" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Installation
+
+    <Tabs>
+      <TabsList>
+        <TabsTrigger value="Installation">CLI</TabsTrigger>
+        <TabsTrigger value="Manual">Manual</TabsTrigger>
+      </TabsList>
+      <TabsContents className="border rounded-xl mt-1">
+        <TabsContent value="Installation" className="p-4">
+         <Installation componentName="scrollspy" />
+        </TabsContent>
+        <TabsContent value="Manual">
+          <CodePreview path="demo/components/scrollspy/scrollspy-1" />
+        </TabsContent>
+      </TabsContents>
+    </Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Navigation anchor elements that include `data-scrollspy-anchor` |
+| `targetRef` | `RefObject<HTMLElement \| HTMLDivElement \| Document \| null \| undefined>` | - | Scroll container reference to observe |
+| `onUpdate` | `(id: string) => void` | - | Callback fired when active section changes |
+| `offset` | `number` | `0` | Default top offset used when calculating active sections |
+| `smooth` | `boolean` | `true` | Enables smooth scroll behavior for anchor clicks |
+| `className` | `string` | - | Additional classes for the wrapper |
+| `dataAttribute` | `string` | `'scrollspy'` | Custom data attribute namespace for anchors and offsets |
+| `history` | `boolean` | `true` | Toggles URL hash updates via `history.replaceState` |
+| `throttleTime` | `number` | - | Reserved prop for throttling support |
+
+## Features
+
+- **Active state syncing**: Applies `data-active="true"` on the currently matched anchor
+- **Hash-aware navigation**: Supports initial hash navigation and optional history updates
+- **Container flexibility**: Works with custom scrollable containers and viewport wrappers
+- **Offset controls**: Supports global `offset` and per-anchor `data-scrollspy-offset`

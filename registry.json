@@ -125,6 +125,19 @@
 			]
 		},
 		{
+			"name": "scrollspy",
+			"type": "registry:component",
+			"title": "Scrollspy",
+			"description": "A lightweight scrollspy container that syncs active anchors with section positions and updates the URL hash.",
+			"files": [
+				{
+					"path": "src/components/scroll/scrollspy.tsx",
+					"type": "registry:component",
+					"target": "src/nhatcapdang/scrollspy.tsx"
+				}
+			]
+		},
+		{
 			"name": "scroll-opposite",
 			"type": "registry:component",
 			"title": "Scroll Opposite",
